@@ -4,266 +4,334 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rent.With.Us | Sweet Camera Shop</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-    
+
     <style>
-        body { 
-            font-family: 'Fredoka', sans-serif; 
-            background-color: #FFF5F7; 
+        /* --- 1. CORE SYSTEM & CUSTOM CURSOR --- */
+        * { cursor: none !important; margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background-color: #FFF5F7;
             background-image: radial-gradient(#ffc2d1 1.2px, transparent 1.2px);
             background-size: 30px 30px;
             color: #1a1a1a;
-            padding: 40px 20px;
+            padding: 60px 20px;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        .main-wrapper {
-            max-width: 900px;
-            margin: 0 auto;
+        #custom-cursor {
+            width: 24px; height: 24px; background: #ff8eb2; border: 3px solid #000;
+            border-radius: 50%; position: fixed; pointer-events: none; z-index: 10000;
+            transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center;
+            box-shadow: 4px 4px 0px #000; transition: transform 0.08s ease-out;
         }
 
-        /* HEAVY BENTO CARD STYLING */
-        .bento-card {
-            border: 4px solid #000000 !important;
-            border-radius: 2.5rem !important;
-            background-color: #ffffff !important;
-            box-shadow: 10px 10px 0px 0px #000000 !important;
-            overflow: hidden;
-            position: relative;
-            margin-bottom: 2.5rem;
+        /* --- 2. ADVANCED SCRAPBOOK ANIMATIONS --- */
+        @keyframes bob {
+            0%, 100% { transform: translateY(0px) rotate(-1.5deg); }
+            50% { transform: translateY(-20px) rotate(1.5deg); }
         }
+
+        @keyframes float-sticker {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+
+        /* --- 3. LAYOUT & WRAPPERS --- */
+        .main-wrapper { max-width: 1000px; margin: 0 auto; position: relative; z-index: 10; }
 
         .bubble-title {
-            color: #ff8eb2;
-            -webkit-text-stroke: 2px #000000;
-            filter: drop-shadow(6px 6px 0px #000000);
-            letter-spacing: -2px;
-            text-align: center;
-            font-size: clamp(3rem, 10vw, 5rem);
-            font-weight: 700;
-            text-transform: uppercase;
-            font-style: italic;
-            margin-bottom: 2.5rem;
+            color: #ff8eb2; -webkit-text-stroke: 2.5px #000000;
+            filter: drop-shadow(10px 10px 0px #000000);
+            text-align: center; font-size: clamp(3rem, 15vw, 6rem);
+            font-weight: 700; text-transform: uppercase; font-style: italic;
+            margin-bottom: 4rem; display: block;
+            animation: bob 6s ease-in-out infinite;
         }
 
-        /* FIXED STEP GRID - NO SHORTCUTS */
-        /* We use a container that forces the children to share the 6px pink borders correctly */
-        .steps-grid-layout {
+        /* --- 4. THE MEMO COLLAGE SYSTEM --- */
+        .collage-container {
+            position: relative;
             display: flex;
             flex-wrap: wrap;
-            background-color: #ffc2d1; /* This creates the middle line color */
-            gap: 6px; /* THIS IS THE SOLID PINK LINE THICKNESS */
+            justify-content: center;
+            gap: 30px;
+            padding: 60px 20px;
+            margin-bottom: 5rem;
         }
 
-        .grid-step {
-            background-color: #ffffff;
-            flex: 1 1 calc(50% - 3px); /* Perfectly splits into two on desktop */
-            padding: 50px;
-            min-height: 350px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        .memo-paper {
+            position: relative;
+            border: 5px solid #000000;
+            box-shadow: 12px 12px 0px #000000;
+            padding: 40px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10;
         }
 
-        /* For Mobile: Make them full width so the pink line is horizontal between them */
-        @media (max-width: 767px) {
-            .grid-step {
-                flex: 1 1 100%;
-            }
+        .memo-paper:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            z-index: 80;
+            box-shadow: 18px 18px 0px #000;
+        }
+
+        /* Distinct Paper Styles - Restored full specificity */
+        .memo-1 { width: 460px; transform: rotate(-3deg); background-color: #fff0f3; }
+        .memo-2 { width: 360px; transform: rotate(4deg); background-color: #fefae0; margin-top: 30px; }
+        .memo-3 { width: 420px; transform: rotate(-2deg); background-color: #f0fff4; }
+        .memo-4 { width: 450px; transform: rotate(3deg); background-color: #ebf8ff; }
+
+        /* Scrapbook Decor - Restored full detail */
+        .tape {
+            position: absolute; width: 130px; height: 45px;
+            background: rgba(255, 142, 178, 0.6);
+            border-left: 3px dashed rgba(0,0,0,0.2);
+            border-right: 3px dashed rgba(0,0,0,0.2);
+            z-index: 25;
+        }
+        .tape-tl { top: -20px; left: -30px; transform: rotate(-35deg); }
+        .tape-tr { top: -20px; right: -30px; transform: rotate(35deg); background: rgba(147, 197, 253, 0.6); }
+
+        .paper-clip {
+            position: absolute; top: -45px; left: 60px;
+            width: 36px; height: 85px; border: 6px solid #000;
+            border-radius: 20px; background: #f8fafc; z-index: 90;
+            transform: rotate(-12deg);
+        }
+
+        .washi-tape {
+            position: absolute; width: 140px; height: 45px;
+            background: repeating-linear-gradient(45deg, #ffb3c1, #ffb3c1 10px, #ff8eb2 10px, #ff8eb2 20px);
+            border-left: 4px dashed #000; border-right: 4px dashed #000;
+            transform: rotate(-10deg); z-index: 55; opacity: 0.9;
+        }
+
+        .sticker {
+            position: absolute; z-index: 100 !important;
+            filter: drop-shadow(5px 5px 0px #000);
+            pointer-events: none;
+            animation: float-sticker 5s ease-in-out infinite;
+        }
+
+        /* --- 5. BENTO FORM DESIGN --- */
+        .bento-card {
+            position: relative;
+            border: 6px solid #000000 !important;
+            border-radius: 3rem !important;
+            background-color: #ffffff !important;
+            box-shadow: 15px 15px 0px 0px #000000 !important;
+            z-index: 5;
+            padding: 60px;
+            margin-bottom: 4rem;
         }
 
         .label-style {
-            font-weight: 900;
-            text-transform: uppercase;
-            font-style: italic;
-            color: #f472b6;
-            margin-bottom: 10px;
-            display: block;
-            font-size: 0.9rem;
+            font-weight: 900; text-transform: uppercase; font-style: italic;
+            color: #f472b6; margin-bottom: 15px; display: block;
+            font-size: 1.1rem; letter-spacing: 1px;
         }
 
-        .input-field-custom { 
-            border: 4px solid #000000 !important;
-            border-radius: 1.5rem !important;
-            padding: 1.2rem !important;
-            width: 100%;
-            font-weight: 700 !important;
-            font-size: 1.1rem;
-            outline: none;
-            background: #ffffff;
+        .input-field-custom {
+            border: 5px solid #000000 !important; border-radius: 1.8rem !important;
+            padding: 1.3rem !important; width: 100%; font-weight: 700 !important;
+            outline: none; background: #ffffff; transition: all 0.2s;
         }
+        .input-field-custom:focus { box-shadow: 10px 10px 0px #ff8eb2; transform: translate(-3px, -3px); }
 
-        .confirm-btn-massive {
-            width: 100%;
-            background-color: #ff8eb2;
-            border: 4px solid #000000;
-            padding: 30px;
-            border-radius: 3rem;
-            font-weight: 900;
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            box-shadow: 12px 12px 0px 0px #000000;
-            cursor: pointer;
+        /* --- 6. APP ICONS (RESTORED FULL DETAIL) --- */
+        .app-icon {
+            width: 65px; height: 65px; border-radius: 18px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 8px 0px 0px #000; border: 4px solid #000;
+            background: white; transition: all 0.2s; cursor: pointer !important;
         }
+        .app-icon:hover { transform: translateY(-7px) rotate(10deg); box-shadow: 0 12px 0px 0px #000; }
 
-        .confirm-btn-massive:active {
-            transform: translate(6px, 6px);
-            box-shadow: 6px 6px 0px 0px #000000;
+        .insta-bg { background: #FFD800; }
+        .canon-bg { background: #FFFFFF; } .canon-text { color: #E30613; font-weight: 900; font-size: 11px; transform: scaleX(1.4); }
+        .dji-bg { background: #000000; }
+        .leica-bg { background: #000000; } .leica-dot { width: 18px; height: 18px; background: #E30613; border-radius: 50%; border: 2px solid white; }
+        .fuji-bg { background: #FFFFFF; } .fuji-x { color: #000; font-weight: 900; font-size: 26px; border-bottom: 5px solid #E30613; line-height: 0.9; }
+
+        /* --- 7. FAQ MODAL SYSTEM --- */
+        #faqModal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.94); z-index: 5000;
+            justify-content: center; align-items: center; padding: 30px;
         }
-
-        .app-link-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 700;
-            color: #ff8eb2;
-            text-decoration: underline;
-            text-underline-offset: 4px;
+        .faq-viewport {
+            width: 100%; max-width: 1000px; height: 85vh;
+            overflow: auto; border: 8px solid #000; border-radius: 2.5rem;
+            background: #fff; position: relative; box-shadow: 20px 20px 0px #ff8eb2;
+        }
+        .close-faq-btn {
+            position: absolute; top: 20px; right: 20px;
+            background: #ff8eb2; border: 5px solid #000;
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 900; font-size: 1.8rem; z-index: 5100;
+            cursor: pointer !important;
         }
     </style>
 </head>
 <body>
 
+    <div id="custom-cursor">✨</div>
+    <div id="bg-stickers-container"></div>
+
     <div class="main-wrapper">
-        
-        <div class="text-center mb-10">
-            <p class="font-bold tracking-[0.8em] uppercase text-[12px] mb-4 text-black text-center w-full">Rent . With . Us</p>
-            <h1 class="bubble-title">Rental Camera</h1>
+        <h1 class="bubble-title">Rent . With . Us</h1>
+
+        <div class="bento-card p-12 text-center mb-12">
+            <div class="paper-clip"></div>
+            <div class="sticker text-pink-500" style="top:-45px; right:45px;"><i data-lucide="heart" size="70"></i></div>
+            <p class="text-2xl md:text-3xl font-black italic">"Camera Guidelines for a Great Experience With Us"</p>
         </div>
 
-        <div class="bento-card p-10 text-center">
-            <p class="text-2xl md:text-3xl font-black italic text-black leading-tight">
-                "A few do's and dont's to enjoy our cameras along the way"
-            </p>
-        </div>
+        <div class="collage-container">
+            <div class="memo-paper memo-1">
+                <div class="tape tape-tl"></div>
+                <div class="flex justify-between items-center mb-8">
+                    <span class="text-6xl font-black italic">01.</span>
+                    <i data-lucide="camera" class="text-pink-400" size="55"></i>
+                </div>
+                <div class="text-[18px] leading-relaxed font-bold">
+                    <p>Upon receiving the camera, snap 1–2 test photos. View them in the gallery and transfer them to your phone to ensure the camera is working correctly. If you notice any issues (cracks, defects, or "patches" in photos), record them and inform the rental service immediately.</p>
+                    <p class="mt-8 text-rose-500 font-black italic bg-white p-5 border-4 border-black rounded-2xl shadow-[8px_8px_0px_#000]">
+                        Note: Failure to report issues early may result in the camera being considered damaged during your rental, which is non-refundable.
+                    </p>
+                </div>
+            </div>
 
-        <div class="bento-card">
-            <div class="steps-grid-layout">
-                
-                <div class="grid-step">
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-4xl font-black italic text-black">01.</span>
-                        <i data-lucide="camera" class="text-pink-400" size="48"></i>
-                    </div>
-                    <div class="text-[17px] leading-relaxed text-black">
-                        <p>Upon receiving the camera, snap 1–2 test photos. View them in the gallery and transfer them to your phone to ensure the camera is working correctly. If you notice any issues (cracks, defects, or "patches" in photos), record them and inform the rental service immediately.</p>
-                        <br>
-                        <p class="text-rose-500 font-bold italic">Note: Failure to report issues early may result in the camera being considered damaged during your rental, which is non-refundable.</p>
+            <div class="memo-paper memo-2">
+                <div class="tape tape-tr"></div>
+                <div class="flex justify-between items-center mb-8">
+                    <span class="text-6xl font-black italic">02.</span>
+                    <i data-lucide="monitor-off" class="text-yellow-600" size="55"></i>
+                </div>
+                <p class="text-[18px] leading-relaxed font-bold">Using a laptop or iPad to transfer photos may corrupt or crash the SD card, potentially losing all your photos. If you absolutely must use these devices, you must notify the staff first.</p>
+                <div class="sticker text-yellow-400" style="bottom:-30px; right:-30px;"><i data-lucide="sparkles" size="65"></i></div>
+            </div>
+
+            <div class="memo-paper memo-3">
+                <div class="flex justify-between items-center mb-8">
+                    <span class="text-6xl font-black italic">03.</span>
+                    <i data-lucide="heart-handshake" class="text-green-600" size="55"></i>
+                </div>
+                <p class="text-[18px] leading-relaxed font-bold">You are allowed to remove the cap and casing, but do so carefully. Any damage to the equipment results in a loss of your deposit. All items (camera, pouch, and bag) must be returned to receive a full deposit refund.</p>
+            </div>
+
+            <div class="memo-paper memo-4">
+                <div class="sticker text-blue-500" style="top: -50px; left: -40px;"><i data-lucide="star" size="65"></i></div>
+                <div class="flex justify-between items-center mb-8">
+                    <span class="text-6xl font-black italic">04.</span>
+                    <i data-lucide="smartphone" class="text-blue-500" size="55"></i>
+                </div>
+                <div class="text-[18px] leading-relaxed font-bold">
+                    <p>The service does not provide free photo transfers. For staff-assisted transfers, a service fee of RM100 applies. Recommended apps for free transfer:</p>
+                    <div class="mt-8 flex flex-wrap gap-5">
+                        <div class="app-icon insta-bg" onclick="window.open('https://www.instagram.com', '_blank')"><div style="width:28px; height:28px; border:4px solid #000; border-radius:50%;"></div></div>
+                        <div class="app-icon canon-bg" onclick="window.open('https://www.canon.com', '_blank')"><span class="canon-text">Canon</span></div>
+                        <div class="app-icon dji-bg" onclick="window.open('https://www.dji.com', '_blank')"><div style="width:30px; height:15px; border:3.5px solid white; border-top:0;"></div></div>
+                        <div class="app-icon leica-bg" onclick="window.open('https://www.leica.com', '_blank')"><div class="leica-dot"></div></div>
+                        <div class="app-icon fuji-bg" onclick="window.open('https://www.fujifilm.com', '_blank')"><span class="fuji-x">X</span></div>
                     </div>
                 </div>
-
-                <div class="grid-step">
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-4xl font-black italic text-black">02.</span>
-                        <i data-lucide="monitor-off" class="text-yellow-500" size="48"></i>
-                    </div>
-                    <div class="text-[17px] leading-relaxed text-black">
-                        <p>Using a laptop or iPad to transfer photos may corrupt or crash the SD card, potentially losing all your photos. If you absolutely must use these devices, you must notify the staff first.</p>
-                    </div>
-                </div>
-
-                <div class="grid-step">
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-4xl font-black italic text-black">03.</span>
-                        <i data-lucide="heart-handshake" class="text-green-500" size="48"></i>
-                    </div>
-                    <div class="text-[17px] leading-relaxed text-black">
-                        <p>You are allowed to remove the cap and casing, but do so carefully. Any damage to the equipment results in a loss of your deposit. All items (camera, pouch, and bag) must be returned to receive a full deposit refund.</p>
-                    </div>
-                </div>
-
-                <div class="grid-step">
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-4xl font-black italic text-black">04.</span>
-                        <i data-lucide="smartphone" class="text-blue-500" size="48"></i>
-                    </div>
-                    <div class="text-[17px] leading-relaxed text-black">
-                        <p>Transferring photos is your responsibility. The service does not provide free photo transfers. If you want the staff to handle the transfer for you, a service fee of RM100 applies. If your SD card reader fails, they recommend using the following apps:</p>
-                        <div class="mt-8 space-y-4">
-                            <a href="https://my.canon/en/consumer/camera-connect/main/product" target="_blank" class="app-link-container"><i data-lucide="link" size="20"></i> Canon Camera Connect</a>
-                            <a href="https://www.dji.com/global/downloads/djiapp/dji-mimo" target="_blank" class="app-link-container"><i data-lucide="link" size="20"></i> DJI Mimo</a>
-                            <a href="https://leica-camera.com/en-int/leica-fotos-app" target="_blank" class="app-link-container"><i data-lucide="link" size="20"></i> Leica FOTOS</a>
-                            <a href="https://www.fujifilm-x.com/en-my/products/software/xapp/" target="_blank" class="app-link-container"><i data-lucide="link" size="20"></i> FUJIFILM XApp</a>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
 
-        <div class="bento-card p-12 bg-pink-400 text-center">
-            <h4 class="font-black uppercase italic text-3xl mb-4 text-black">Important Deposit Information</h4>
-            <p class="font-bold text-xl text-black">Refund Timeline: Deposits are processed and returned within 3 working days after the camera is returned.</p>
-        </div>
+        <div class="bento-card p-16 md:p-24">
+            <div class="washi-tape" style="top: -30px; right: 80px;"></div>
+            <div class="sticker text-red-500" style="top: -60px; left: 80px;"><i data-lucide="heart" size="80"></i></div>
 
-        <div class="bento-card p-12 md:p-20">
-            <h2 class="text-5xl font-black italic uppercase mb-16 text-black">Book Request ✨</h2>
-            
-            <form id="bookingForm" class="space-y-10">
+            <h2 class="text-4xl font-black italic uppercase mb-16 text-center">Book Request</h2>
+
+            <form id="bookingForm" class="space-y-12">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div>
-                        <label class="label-style">Your Name</label>
-                        <input type="text" name="name" class="input-field-custom" required>
-                    </div>
+                    <div><label class="label-style">Your Name</label><input type="text" id="userName" placeholder="NAME" class="input-field-custom" required></div>
                     <div>
                         <label class="label-style">Select Camera</label>
-                        <select name="camera" class="input-field-custom">
-                            <option>Leica D-Lux 8</option>
-                            <option>Leica D-Lux 7</option>
-                            <option>Canon G7X Mark III</option>
-                            <option>Canon G7X Mark II</option>
-                            <option>DJI OSMO Pocket 3</option>
-                            <option>Insta360 X3</option>
-                            <option>Fujifilm X-M5</option>
-                            <option>Canon EOS R50</option>
+                        <select id="cameraSelect" class="input-field-custom" required>
+                            <option value="" disabled selected>CHOOSE GEAR</option>
+                            <option>Leica D-Lux 8</option><option>Leica D-Lux 7</option>
+                            <option>Canon G7X Mark III</option><option>Canon G7X Mark II</option>
+                            <option>DJI OSMO Pocket 3</option><option>Insta360 X3</option>
+                            <option>Fujifilm X-M5</option><option>Canon EOS R50</option>
                         </select>
                     </div>
-                    <div>
-                        <label class="label-style">WhatsApp Number</label>
-                        <input type="tel" name="whatsapp" class="input-field-custom" required>
-                    </div>
-                    <div>
-                        <label class="label-style">Email Address</label>
-                        <input type="email" name="email" class="input-field-custom" required>
-                    </div>
-                    <div>
-                        <label class="label-style">Start Date</label>
-                        <input type="date" id="startDate" name="startDate" class="input-field-custom" required>
-                    </div>
-                    <div>
-                        <label class="label-style">Return Date</label>
-                        <input type="date" id="returnDate" name="returnDate" class="input-field-custom" required>
-                    </div>
+                    <div><label class="label-style">WhatsApp</label><input type="tel" id="userWhatsApp" placeholder="60..." class="input-field-custom" required></div>
+                    <div><label class="label-style">Email Address</label><input type="email" id="userEmail" placeholder="EMAIL" class="input-field-custom" required></div>
+                    <div><label class="label-style">Start Date</label><input type="date" id="startDate" class="input-field-custom" required></div>
+                    <div><label class="label-style">Return Date</label><input type="date" id="returnDate" class="input-field-custom" required></div>
                 </div>
-
-                <div class="pt-10">
-                    <button type="submit" class="confirm-btn-massive">
-                        CONFIRM REQUEST 💖
-                    </button>
+                <div class="pt-12 text-center">
+                    <p class="text-xl font-black italic text-pink-500 mb-10">💰 Deposit returned within 3 working days after return.</p>
+                    <button type="submit" style="width:100%; background:#ff8eb2; border:6px solid #000; padding:30px; border-radius:4rem; font-weight:900; font-size:2rem; box-shadow:15px 15px 0px #000;">CONFIRM REQUEST</button>
                 </div>
             </form>
         </div>
+    </div>
 
+    <button onclick="openFAQ()" style="position:fixed; bottom:50px; right:50px; z-index:1000; background:#ff8eb2; border:5px solid #000; padding:25px 40px; border-radius:3.5rem; font-weight:900; box-shadow:12px 12px 0px #000; font-size: 1.4rem;">LINE UPS & FAQ 📸</button>
+
+    <div id="faqModal" onclick="closeFAQ()">
+        <div class="close-faq-btn" onclick="closeFAQ()">✕</div>
+        <div class="faq-viewport" onclick="event.stopPropagation()">
+            <img src="https://raw.githubusercontent.com/cyrilalvin99/Testcuteshopwebsite/main/images/IMG-20251216-WA0001.jpg" style="width:100%; display:block;">
+        </div>
     </div>
 
     <script>
         lucide.createIcons();
 
-        // DATE LOGIC
-        const startInput = document.getElementById('startDate');
-        const returnInput = document.getElementById('returnDate');
-        const today = new Date().toISOString().split('T')[0];
-        startInput.setAttribute('min', today);
-
-        startInput.addEventListener('change', () => {
-            const selectedStartDate = startInput.value;
-            returnInput.setAttribute('min', selectedStartDate);
-            if (returnInput.value && returnInput.value < selectedStartDate) {
-                returnInput.value = selectedStartDate;
-            }
+        // Cursor Logic
+        const cursor = document.getElementById('custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
         });
+
+        // Background Decoration Bombing - Restored full count
+        const bgContainer = document.getElementById('bg-stickers-container');
+        const icons = ['heart', 'sparkles', 'star', 'camera', 'smile'];
+        const colors = ['text-pink-200', 'text-yellow-200', 'text-blue-200', 'text-purple-200'];
+
+        for (let i = 0; i < 25; i++) {
+            const div = document.createElement('div');
+            div.className = `sticker ${colors[Math.floor(Math.random() * colors.length)]}`;
+            div.style.top = Math.random() * 100 + 'vh';
+            div.style.left = Math.random() * 100 + 'vw';
+            div.style.animationDelay = (Math.random() * 5) + 's';
+            div.innerHTML = `<i data-lucide="${icons[Math.floor(Math.random() * icons.length)]}" size="${30 + Math.random() * 40}"></i>`;
+            bgContainer.appendChild(div);
+        }
+        lucide.createIcons();
+
+        function openFAQ() { document.getElementById('faqModal').style.display='flex'; document.body.style.overflow='hidden'; }
+        function closeFAQ() { document.getElementById('faqModal').style.display='none'; document.body.style.overflow='auto'; }
+
+        // WhatsApp Submission - Restored full message detail
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const text = `*NEW BOOKING REQUEST*%0A--------------------------%0A*Name:* ${document.getElementById('userName').value}%0A*Camera:* ${document.getElementById('cameraSelect').value}%0A*Dates:* ${document.getElementById('startDate').value} to ${document.getElementById('returnDate').value}%0A*WhatsApp:* ${document.getElementById('userWhatsApp').value}`;
+            window.open(`https://wa.me/601133023023?text=${text}`, '_blank');
+        });
+
+        const s = document.getElementById('startDate');
+        const r = document.getElementById('returnDate');
+        s.min = new Date().toISOString().split("T")[0];
+        s.addEventListener('change', () => { r.min = s.value; });
     </script>
 </body>
 </html>
