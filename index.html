@@ -10,7 +10,6 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
-        /* CORE PAGE STYLING - NO SHORTCUTS */
         body { 
             font-family: 'Fredoka', sans-serif; 
             background-color: #FFF5F7; 
@@ -36,7 +35,6 @@
             margin-bottom: 2.5rem;
         }
 
-        /* TITLE STYLING */
         .bubble-title {
             color: #ff8eb2;
             -webkit-text-stroke: 2px #000000;
@@ -50,37 +48,32 @@
             margin-bottom: 2.5rem;
         }
 
-        /* THE 4 STEPS GRID WITH SOLID PINK LINES */
-        .steps-wrapper {
-            display: grid;
-            grid-template-columns: 1fr;
-        }
-
-        @media (min-width: 768px) {
-            .steps-wrapper {
-                grid-template-columns: 1fr 1fr;
-            }
-            .step-1 { 
-                border-right: 6px solid #ffc2d1 !important; 
-                border-bottom: 6px solid #ffc2d1 !important; 
-            }
-            .step-2 { 
-                border-bottom: 6px solid #ffc2d1 !important; 
-            }
-            .step-3 { 
-                border-right: 6px solid #ffc2d1 !important; 
-            }
+        /* FIXED STEP GRID - NO SHORTCUTS */
+        /* We use a container that forces the children to share the 6px pink borders correctly */
+        .steps-grid-layout {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: #ffc2d1; /* This creates the middle line color */
+            gap: 6px; /* THIS IS THE SOLID PINK LINE THICKNESS */
         }
 
         .grid-step {
+            background-color: #ffffff;
+            flex: 1 1 calc(50% - 3px); /* Perfectly splits into two on desktop */
             padding: 50px;
-            background: #ffffff;
+            min-height: 350px;
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        /* FORM INPUT STYLING */
+        /* For Mobile: Make them full width so the pink line is horizontal between them */
+        @media (max-width: 767px) {
+            .grid-step {
+                flex: 1 1 100%;
+            }
+        }
+
         .label-style {
             font-weight: 900;
             text-transform: uppercase;
@@ -100,15 +93,8 @@
             font-size: 1.1rem;
             outline: none;
             background: #ffffff;
-            transition: transform 0.1s;
         }
 
-        .input-field-custom:focus {
-            box-shadow: 5px 5px 0px 0px #ffc2d1;
-            transform: translateY(-2px);
-        }
-
-        /* BUTTON STYLING */
         .confirm-btn-massive {
             width: 100%;
             background-color: #ff8eb2;
@@ -119,7 +105,6 @@
             font-size: 1.8rem;
             text-transform: uppercase;
             box-shadow: 12px 12px 0px 0px #000000;
-            transition: all 0.1s;
             cursor: pointer;
         }
 
@@ -135,7 +120,6 @@
             font-weight: 700;
             color: #ff8eb2;
             text-decoration: underline;
-            text-decoration-style: dotted;
             text-underline-offset: 4px;
         }
     </style>
@@ -145,7 +129,7 @@
     <div class="main-wrapper">
         
         <div class="text-center mb-10">
-            <p class="font-bold tracking-[0.8em] uppercase text-[12px] mb-4 text-black">Rent . With . Us</p>
+            <p class="font-bold tracking-[0.8em] uppercase text-[12px] mb-4 text-black text-center w-full">Rent . With . Us</p>
             <h1 class="bubble-title">Rental Camera</h1>
         </div>
 
@@ -156,46 +140,46 @@
         </div>
 
         <div class="bento-card">
-            <div class="steps-wrapper">
+            <div class="steps-grid-layout">
                 
-                <div class="grid-step step-1">
+                <div class="grid-step">
                     <div class="flex justify-between items-center mb-4">
-                        <span class="text-4xl font-black italic">01.</span>
+                        <span class="text-4xl font-black italic text-black">01.</span>
                         <i data-lucide="camera" class="text-pink-400" size="48"></i>
                     </div>
-                    <div class="text-[17px] leading-relaxed">
+                    <div class="text-[17px] leading-relaxed text-black">
                         <p>Upon receiving the camera, snap 1–2 test photos. View them in the gallery and transfer them to your phone to ensure the camera is working correctly. If you notice any issues (cracks, defects, or "patches" in photos), record them and inform the rental service immediately.</p>
                         <br>
                         <p class="text-rose-500 font-bold italic">Note: Failure to report issues early may result in the camera being considered damaged during your rental, which is non-refundable.</p>
                     </div>
                 </div>
 
-                <div class="grid-step step-2">
+                <div class="grid-step">
                     <div class="flex justify-between items-center mb-4">
-                        <span class="text-4xl font-black italic">02.</span>
+                        <span class="text-4xl font-black italic text-black">02.</span>
                         <i data-lucide="monitor-off" class="text-yellow-500" size="48"></i>
                     </div>
-                    <div class="text-[17px] leading-relaxed">
+                    <div class="text-[17px] leading-relaxed text-black">
                         <p>Using a laptop or iPad to transfer photos may corrupt or crash the SD card, potentially losing all your photos. If you absolutely must use these devices, you must notify the staff first.</p>
                     </div>
                 </div>
 
-                <div class="grid-step step-3">
+                <div class="grid-step">
                     <div class="flex justify-between items-center mb-4">
-                        <span class="text-4xl font-black italic">03.</span>
+                        <span class="text-4xl font-black italic text-black">03.</span>
                         <i data-lucide="heart-handshake" class="text-green-500" size="48"></i>
                     </div>
-                    <div class="text-[17px] leading-relaxed">
+                    <div class="text-[17px] leading-relaxed text-black">
                         <p>You are allowed to remove the cap and casing, but do so carefully. Any damage to the equipment results in a loss of your deposit. All items (camera, pouch, and bag) must be returned to receive a full deposit refund.</p>
                     </div>
                 </div>
 
-                <div class="grid-step step-4">
+                <div class="grid-step">
                     <div class="flex justify-between items-center mb-4">
-                        <span class="text-4xl font-black italic">04.</span>
+                        <span class="text-4xl font-black italic text-black">04.</span>
                         <i data-lucide="smartphone" class="text-blue-500" size="48"></i>
                     </div>
-                    <div class="text-[17px] leading-relaxed">
+                    <div class="text-[17px] leading-relaxed text-black">
                         <p>Transferring photos is your responsibility. The service does not provide free photo transfers. If you want the staff to handle the transfer for you, a service fee of RM100 applies. If your SD card reader fails, they recommend using the following apps:</p>
                         <div class="mt-8 space-y-4">
                             <a href="https://my.canon/en/consumer/camera-connect/main/product" target="_blank" class="app-link-container"><i data-lucide="link" size="20"></i> Canon Camera Connect</a>
@@ -215,13 +199,13 @@
         </div>
 
         <div class="bento-card p-12 md:p-20">
-            <h2 class="text-5xl font-black italic uppercase mb-16">Book Request ✨</h2>
+            <h2 class="text-5xl font-black italic uppercase mb-16 text-black">Book Request ✨</h2>
             
             <form id="bookingForm" class="space-y-10">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                     <div>
                         <label class="label-style">Your Name</label>
-                        <input type="text" name="name" placeholder="Name" class="input-field-custom" required>
+                        <input type="text" name="name" class="input-field-custom" required>
                     </div>
                     <div>
                         <label class="label-style">Select Camera</label>
@@ -238,19 +222,19 @@
                     </div>
                     <div>
                         <label class="label-style">WhatsApp Number</label>
-                        <input type="tel" name="whatsapp" placeholder="60..." class="input-field-custom" required>
+                        <input type="tel" name="whatsapp" class="input-field-custom" required>
                     </div>
                     <div>
                         <label class="label-style">Email Address</label>
-                        <input type="email" name="email" placeholder="email@example.com" class="input-field-custom" required>
+                        <input type="email" name="email" class="input-field-custom" required>
                     </div>
                     <div>
                         <label class="label-style">Start Date</label>
-                        <input type="date" name="startDate" class="input-field-custom" required>
+                        <input type="date" id="startDate" name="startDate" class="input-field-custom" required>
                     </div>
                     <div>
                         <label class="label-style">Return Date</label>
-                        <input type="date" name="returnDate" class="input-field-custom" required>
+                        <input type="date" id="returnDate" name="returnDate" class="input-field-custom" required>
                     </div>
                 </div>
 
@@ -266,6 +250,20 @@
 
     <script>
         lucide.createIcons();
+
+        // DATE LOGIC
+        const startInput = document.getElementById('startDate');
+        const returnInput = document.getElementById('returnDate');
+        const today = new Date().toISOString().split('T')[0];
+        startInput.setAttribute('min', today);
+
+        startInput.addEventListener('change', () => {
+            const selectedStartDate = startInput.value;
+            returnInput.setAttribute('min', selectedStartDate);
+            if (returnInput.value && returnInput.value < selectedStartDate) {
+                returnInput.value = selectedStartDate;
+            }
+        });
     </script>
 </body>
 </html>
