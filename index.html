@@ -50,9 +50,41 @@
             display: block; font-weight: bold; margin-bottom: 0.25rem; font-size: 0.875rem;
             text-transform: uppercase; font-style: italic; color: #f472b6;
         }
+
+        #popup-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 182, 193, 0.4);
+            backdrop-filter: blur(8px);
+            z-index: 50;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        
+        .poster-ratio {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            max-width: 600px; 
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
 </head>
 <body class="p-4 md:p-12">
+
+    <div id="popup-overlay">
+        <div class="bento-container max-w-md w-full p-10 text-center space-y-4">
+            <div class="text-6xl mb-4">💌</div>
+            <h3 class="text-3xl font-black italic uppercase tracking-tight text-pink-500">Details Received!</h3>
+            <p class="font-bold text-gray-700">Yay! We've got your request. Our team will reach out to you via WhatsApp soon to confirm your booking! </p>
+            <button onclick="closePopup()" class="w-full bg-black text-white p-4 rounded-2xl font-black uppercase tracking-widest hover:bg-gray-800 transition shadow-[4px_4px_0px_0px_#ff8eb2]">
+                Okay, Got it!
+            </button>
+        </div>
+    </div>
 
     <div class="max-w-4xl mx-auto">
         
@@ -61,14 +93,13 @@
             <h1 class="text-5xl md:text-7xl font-bold bubble-title uppercase italic">Rental Camera</h1>
         </div>
 
-        <div class="bento-container h-72 md:h-[500px]">
+        <div class="bento-container poster-ratio">
             <img id="slide1" 
                  src="https://raw.githubusercontent.com/cyrilalvin99/Testcuteshopwebsite/main/images/IMG-20251216-WA0000.jpg" 
-                 style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 1s; opacity: 1;">
+                 style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: white; transition: opacity 1s; opacity: 1;">
             <img id="slide2" 
                  src="https://raw.githubusercontent.com/cyrilalvin99/Testcuteshopwebsite/main/images/IMG-20251216-WA0001.jpg" 
-                 style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 1s; opacity: 0;">
-            
+                 style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: white; transition: opacity 1s; opacity: 0;">
         </div>
 
         <div class="bento-container p-6 md:p-10">
@@ -124,31 +155,19 @@
                     CONFIRM REQUEST 💖
                 </button>
             </form>
-            
-            <div id="msg" style="display: none; margin-top: 1.5rem; text-align: center; font-weight: 900; color: #e11d48; text-transform: uppercase;">
-                Sent! Check your WhatsApp soon! 🎀
-            </div>
         </div>
     </div>
 
     <script>
-        // 1. CALENDAR LOGIC
         const startInput = document.getElementById('startDate');
         const returnInput = document.getElementById('returnDate');
-        
-        // Set today's date as the minimum for the start date
         const today = new Date().toISOString().split('T')[0];
         startInput.setAttribute('min', today);
-
-        // When start date changes, update the minimum for return date
         startInput.addEventListener('change', function() {
             returnInput.setAttribute('min', startInput.value);
-            if (returnInput.value < startInput.value) {
-                returnInput.value = startInput.value;
-            }
+            if (returnInput.value < startInput.value) { returnInput.value = startInput.value; }
         });
 
-        // 2. SLIDESHOW LOGIC
         let currentSlide = 1;
         const s1 = document.getElementById('slide1');
         const s2 = document.getElementById('slide2');
@@ -156,12 +175,12 @@
             s1.style.opacity = currentSlide === 1 ? '0' : '1';
             s2.style.opacity = currentSlide === 1 ? '1' : '0';
             currentSlide = currentSlide === 1 ? 2 : 1;
-        }, 3500);
+        }, 4000);
 
-        // 3. FORM SUBMISSION
         const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
         const form = document.getElementById('bookingForm');
         const btn = document.getElementById('submitBtn');
+        const overlay = document.getElementById('popup-overlay');
 
         form.addEventListener('submit', e => {
             e.preventDefault();
@@ -169,16 +188,18 @@
             btn.innerText = "SENDING... ✨";
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                 .then(() => {
-                    document.getElementById('msg').style.display = 'block';
+                    overlay.style.display = 'flex';
                     form.reset();
                     btn.disabled = false;
-                    btn.innerText = "CONFIRM REQUEST 💖";
+                    btn.innerText = "CONFIRM REQUEST";
                 })
                 .catch(() => {
-                    btn.innerText = "ERROR! TRY AGAIN?";
+                    btn.innerText = "ERROR! Please contact us via whatsapp for further assistance";
                     btn.disabled = false;
                 });
         });
+
+        function closePopup() { overlay.style.display = 'none'; }
     </script>
 </body>
 </html>
