@@ -14,7 +14,6 @@
             background-size: 24px 24px;
         }
 
-        /* HARD-CODED BENTO STYLE - This ensures the boxes ALWAYS show up */
         .bento-container {
             border: 4px solid black !important;
             border-radius: 2.5rem !important;
@@ -22,7 +21,7 @@
             box-shadow: 10px 10px 0px 0px rgba(0,0,0,1) !important;
             overflow: hidden;
             position: relative;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
 
         .bubble-title {
@@ -44,17 +43,12 @@
             font-weight: bold !important;
             width: 100%;
             outline: none;
+            background-color: white;
         }
         
         label { 
-            display: block;
-            font-weight: bold;
-            margin-bottom: 0.25rem;
-            margin-left: 0.25rem;
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            font-style: italic;
-            color: #f472b6;
+            display: block; font-weight: bold; margin-bottom: 0.25rem; font-size: 0.875rem;
+            text-transform: uppercase; font-style: italic; color: #f472b6;
         }
     </style>
 </head>
@@ -63,19 +57,17 @@
     <div class="max-w-4xl mx-auto">
         
         <div class="text-center mb-10">
-            <p class="font-bold tracking-[0.5em] uppercase text-[10px] mb-2">Rent . With . Us</p>
+            <p class="font-bold tracking-[0.5em] uppercase text-[10px] mb-2 text-black">Rent . With . Us</p>
             <h1 class="text-5xl md:text-7xl font-bold bubble-title uppercase italic">Rental Camera</h1>
         </div>
 
         <div class="bento-container h-72 md:h-[500px]">
             <img id="slide1" 
-                 src="https://github.com/cyrilalvin99/Testcuteshopwebsite/blob/main/images/1.PNG?raw=true" 
-                 style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 1s; opacity: 1;" 
-                 alt="Camera 1">
+                 src="https://raw.githubusercontent.com/cyrilalvin99/Testcuteshopwebsite/main/images/1.PNG" 
+                 style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 1s; opacity: 1;">
             <img id="slide2" 
-                 src="https://github.com/cyrilalvin99/Testcuteshopwebsite/blob/main/images/2.PNG?raw=true" 
-                 style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 1s; opacity: 0;" 
-                 alt="Camera 2">
+                 src="https://raw.githubusercontent.com/cyrilalvin99/Testcuteshopwebsite/main/images/2.PNG" 
+                 style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 1s; opacity: 0;">
             
             <div style="position: absolute; bottom: 1rem; left: 1rem; background: white; border: 2px solid black; padding: 4px 16px; border-radius: 99px; font-weight: bold; box-shadow: 3px 3px 0px black; font-size: 0.75rem;">
                 ✨ OUR GEAR COLLECTION
@@ -92,11 +84,11 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label>Your Name</label>
-                        <input type="text" name="name" placeholder="E.g. Sweet Pea" class="input-field" required>
+                        <input type="text" name="name" placeholder="Sweet Pea" class="input-field" required>
                     </div>
                     <div>
                         <label>Select Camera</label>
-                        <select name="camera" class="input-field cursor-pointer">
+                        <select name="camera" class="input-field">
                             <option>Leica D-Lux 8</option>
                             <option>Leica D-Lux 7</option>
                             <option>Canon G7X Mark III</option>
@@ -111,11 +103,11 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label>WhatsApp Number 📱</label>
+                        <label>WhatsApp Number</label>
                         <input type="tel" name="whatsapp" placeholder="60123456789" class="input-field" required>
                     </div>
                     <div>
-                        <label>Email Address 💌</label>
+                        <label>Email Address</label>
                         <input type="email" name="email" placeholder="hello@sweet.com" class="input-field" required>
                     </div>
                 </div>
@@ -123,67 +115,69 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label>Booking Period (Start)</label>
-                        <input type="date" name="startDate" class="input-field" required>
+                        <input type="date" id="startDate" name="startDate" class="input-field" required>
                     </div>
                     <div>
                         <label>Return Date</label>
-                        <input type="date" name="returnDate" class="input-field" required>
+                        <input type="date" id="returnDate" name="returnDate" class="input-field" required>
                     </div>
                 </div>
 
-                <button type="submit" id="submitBtn" style="width: 100%; background: #ff8eb2; border: 4px solid black; padding: 1.25rem; border-radius: 2rem; font-weight: 900; font-size: 1.5rem; box-shadow: 6px 6px 0px black; cursor: pointer; transition: all 0.2s;" onmousedown="this.style.transform='translateY(4px)'; this.style.boxShadow='2px 2px 0px black'" onmouseup="this.style.transform='translateY(0)'; this.style.boxShadow='6px 6px 0px black'">
+                <button type="submit" id="submitBtn" style="width: 100%; background: #ff8eb2; border: 4px solid black; padding: 1.25rem; border-radius: 2rem; font-weight: 900; font-size: 1.5rem; box-shadow: 6px 6px 0px black; cursor: pointer;">
                     CONFIRM REQUEST 💖
                 </button>
             </form>
             
-            <div id="msg" style="display: none; margin-top: 1.5rem; text-align: center; font-weight: 900; color: #e11d48; text-transform: uppercase; letter-spacing: 0.1em;">
+            <div id="msg" style="display: none; margin-top: 1.5rem; text-align: center; font-weight: 900; color: #e11d48; text-transform: uppercase;">
                 Sent! Check your WhatsApp soon! 🎀
             </div>
         </div>
-
-        <p class="text-center font-bold opacity-30 text-[10px] uppercase tracking-[0.3em] pb-10">
-            Kindly return gear in original condition.
-        </p>
-
     </div>
 
     <script>
-        // SLIDESHOW
+        // 1. CALENDAR LOGIC
+        const startInput = document.getElementById('startDate');
+        const returnInput = document.getElementById('returnDate');
+        
+        // Set today's date as the minimum for the start date
+        const today = new Date().toISOString().split('T')[0];
+        startInput.setAttribute('min', today);
+
+        // When start date changes, update the minimum for return date
+        startInput.addEventListener('change', function() {
+            returnInput.setAttribute('min', startInput.value);
+            if (returnInput.value < startInput.value) {
+                returnInput.value = startInput.value;
+            }
+        });
+
+        // 2. SLIDESHOW LOGIC
         let currentSlide = 1;
         const s1 = document.getElementById('slide1');
         const s2 = document.getElementById('slide2');
         setInterval(() => {
-            if (currentSlide === 1) {
-                s1.style.opacity = '0';
-                s2.style.opacity = '1';
-                currentSlide = 2;
-            } else {
-                s1.style.opacity = '1';
-                s2.style.opacity = '0';
-                currentSlide = 1;
-            }
+            s1.style.opacity = currentSlide === 1 ? '0' : '1';
+            s2.style.opacity = currentSlide === 1 ? '1' : '0';
+            currentSlide = currentSlide === 1 ? 2 : 1;
         }, 3500);
 
-        // FORM SUBMISSION
+        // 3. FORM SUBMISSION
         const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
         const form = document.getElementById('bookingForm');
         const btn = document.getElementById('submitBtn');
-        const msg = document.getElementById('msg');
 
         form.addEventListener('submit', e => {
             e.preventDefault();
             btn.disabled = true;
             btn.innerText = "SENDING... ✨";
-            
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => {
-                    msg.style.display = 'block';
+                .then(() => {
+                    document.getElementById('msg').style.display = 'block';
                     form.reset();
                     btn.disabled = false;
                     btn.innerText = "CONFIRM REQUEST 💖";
                 })
-                .catch(error => {
-                    console.error('Error!', error.message);
+                .catch(() => {
                     btn.innerText = "ERROR! TRY AGAIN?";
                     btn.disabled = false;
                 });
