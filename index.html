@@ -10,14 +10,14 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
-        /* General Page Setup */
+        /* CORE PAGE STYLING - NO SHORTCUTS */
         body { 
             font-family: 'Fredoka', sans-serif; 
             background-color: #FFF5F7; 
             background-image: radial-gradient(#ffc2d1 1.2px, transparent 1.2px);
             background-size: 30px 30px;
+            color: #1a1a1a;
             padding: 40px 20px;
-            color: #000000;
         }
 
         .main-wrapper {
@@ -25,157 +25,118 @@
             margin: 0 auto;
         }
 
-        /* Bento Box Styling */
-        .bento-box {
-            border: 4px solid #000000;
-            border-radius: 40px;
-            background-color: #ffffff;
-            box-shadow: 10px 10px 0px 0px #000000;
-            margin-bottom: 40px;
+        /* HEAVY BENTO CARD STYLING */
+        .bento-card {
+            border: 4px solid #000000 !important;
+            border-radius: 2.5rem !important;
+            background-color: #ffffff !important;
+            box-shadow: 10px 10px 0px 0px #000000 !important;
             overflow: hidden;
-            width: 100%;
+            position: relative;
+            margin-bottom: 2.5rem;
         }
 
-        /* Title Design */
-        .page-title {
-            font-size: 80px;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-style: italic;
+        /* TITLE STYLING */
+        .bubble-title {
             color: #ff8eb2;
             -webkit-text-stroke: 2px #000000;
             filter: drop-shadow(6px 6px 0px #000000);
+            letter-spacing: -2px;
             text-align: center;
-            margin-bottom: 40px;
-            line-height: 1;
+            font-size: clamp(3rem, 10vw, 5rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-style: italic;
+            margin-bottom: 2.5rem;
         }
 
-        @media (max-width: 768px) {
-            .page-title { font-size: 50px; }
-        }
-
-        /* The Grid Layout for Steps */
-        .steps-container {
+        /* THE 4 STEPS GRID WITH SOLID PINK LINES */
+        .steps-wrapper {
             display: grid;
             grid-template-columns: 1fr;
-            position: relative;
         }
 
         @media (min-width: 768px) {
-            .steps-container {
+            .steps-wrapper {
                 grid-template-columns: 1fr 1fr;
             }
-
-            /* The Solid Pink Grid Lines - NO SHORTCUTS */
-            .grid-line-vertical {
-                position: absolute;
-                top: 40px;
-                bottom: 40px;
-                left: 50%;
-                width: 6px;
-                background-color: #ffc2d1;
-                transform: translateX(-50%);
-                z-index: 1;
+            .step-1 { 
+                border-right: 6px solid #ffc2d1 !important; 
+                border-bottom: 6px solid #ffc2d1 !important; 
             }
-
-            .grid-line-horizontal {
-                position: absolute;
-                left: 40px;
-                right: 40px;
-                top: 50%;
-                height: 6px;
-                background-color: #ffc2d1;
-                transform: translateY(-50%);
-                z-index: 1;
+            .step-2 { 
+                border-bottom: 6px solid #ffc2d1 !important; 
+            }
+            .step-3 { 
+                border-right: 6px solid #ffc2d1 !important; 
             }
         }
 
-        .step-block {
-            padding: 60px;
-            position: relative;
-            z-index: 2;
-            background-color: #ffffff;
+        .grid-step {
+            padding: 50px;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .step-number {
-            font-size: 40px;
-            font-weight: 700;
-            font-style: italic;
-            color: #000000;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .step-paragraph {
-            font-size: 16px;
-            line-height: 1.6;
-            font-weight: 400;
-            color: #333333;
-        }
-
-        /* Form Styling */
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-label {
-            display: block;
-            font-weight: 700;
+        /* FORM INPUT STYLING */
+        .label-style {
+            font-weight: 900;
             text-transform: uppercase;
             font-style: italic;
             color: #f472b6;
-            margin-bottom: 8px;
-            font-size: 14px;
+            margin-bottom: 10px;
+            display: block;
+            font-size: 0.9rem;
         }
 
-        .form-input {
+        .input-field-custom { 
+            border: 4px solid #000000 !important;
+            border-radius: 1.5rem !important;
+            padding: 1.2rem !important;
             width: 100%;
-            border: 4px solid #000000;
-            border-radius: 20px;
-            padding: 15px 20px;
-            font-size: 16px;
-            font-weight: 700;
+            font-weight: 700 !important;
+            font-size: 1.1rem;
             outline: none;
-            background-color: #ffffff;
+            background: #ffffff;
+            transition: transform 0.1s;
         }
 
-        .form-input:focus {
+        .input-field-custom:focus {
             box-shadow: 5px 5px 0px 0px #ffc2d1;
+            transform: translateY(-2px);
         }
 
-        .submit-button {
+        /* BUTTON STYLING */
+        .confirm-btn-massive {
             width: 100%;
             background-color: #ff8eb2;
             border: 4px solid #000000;
-            padding: 25px;
-            border-radius: 50px;
-            font-size: 24px;
-            font-weight: 700;
+            padding: 30px;
+            border-radius: 3rem;
+            font-weight: 900;
+            font-size: 1.8rem;
             text-transform: uppercase;
-            box-shadow: 10px 10px 0px 0px #000000;
+            box-shadow: 12px 12px 0px 0px #000000;
+            transition: all 0.1s;
             cursor: pointer;
-            transition: transform 0.1s, box-shadow 0.1s;
         }
 
-        .submit-button:active {
-            transform: translate(5px, 5px);
-            box-shadow: 5px 5px 0px 0px #000000;
+        .confirm-btn-massive:active {
+            transform: translate(6px, 6px);
+            box-shadow: 6px 6px 0px 0px #000000;
         }
 
-        .app-link-box {
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .app-link-item {
-            color: #ff8eb2;
-            font-weight: 700;
-            text-decoration: underline;
+        .app-link-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            font-weight: 700;
+            color: #ff8eb2;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            text-underline-offset: 4px;
         }
     </style>
 </head>
@@ -183,70 +144,64 @@
 
     <div class="main-wrapper">
         
-        <div class="text-center mb-12">
-            <p style="letter-spacing: 8px; text-transform: uppercase; font-size: 12px; font-weight: 700; margin-bottom: 10px;">Rent . With . Us</p>
-            <h1 class="page-title">Rental Camera</h1>
+        <div class="text-center mb-10">
+            <p class="font-bold tracking-[0.8em] uppercase text-[12px] mb-4 text-black">Rent . With . Us</p>
+            <h1 class="bubble-title">Rental Camera</h1>
         </div>
 
-        <div class="bento-box" style="padding: 30px; text-align: center;">
-            <p style="font-size: 24px; font-weight: 700; font-style: italic;">
+        <div class="bento-card p-10 text-center">
+            <p class="text-2xl md:text-3xl font-black italic text-black leading-tight">
                 "A few do's and dont's to enjoy our cameras along the way"
             </p>
         </div>
 
-        <div class="bento-box">
-            <div class="steps-container">
+        <div class="bento-card">
+            <div class="steps-wrapper">
                 
-                <div class="grid-line-vertical"></div>
-                <div class="grid-line-horizontal"></div>
-
-                <div class="step-block">
-                    <div class="flex justify-between items-start">
-                        <span class="step-number">1</span>
-                        <i data-lucide="camera" style="color: #ff8eb2;"></i>
+                <div class="grid-step step-1">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-4xl font-black italic">01.</span>
+                        <i data-lucide="camera" class="text-pink-400" size="48"></i>
                     </div>
-                    <div class="step-paragraph">
-                        Upon receiving the camera, snap 1–2 test photos. View them in the gallery and transfer them to your phone to ensure the camera is working correctly. If you notice any issues (cracks, defects, or "patches" in photos), record them and inform the rental service immediately.
-                        <br><br>
-                        <span style="color: #ef4444; font-weight: 700; font-style: italic;">
-                            Note: Failure to report issues early may result in the camera being considered damaged during your rental, which is non-refundable.
-                        </span>
+                    <div class="text-[17px] leading-relaxed">
+                        <p>Upon receiving the camera, snap 1–2 test photos. View them in the gallery and transfer them to your phone to ensure the camera is working correctly. If you notice any issues (cracks, defects, or "patches" in photos), record them and inform the rental service immediately.</p>
+                        <br>
+                        <p class="text-rose-500 font-bold italic">Note: Failure to report issues early may result in the camera being considered damaged during your rental, which is non-refundable.</p>
                     </div>
                 </div>
 
-                <div class="step-block">
-                    <div class="flex justify-between items-start">
-                        <span class="step-number">2</span>
-                        <i data-lucide="monitor-off" style="color: #eab308;"></i>
+                <div class="grid-step step-2">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-4xl font-black italic">02.</span>
+                        <i data-lucide="monitor-off" class="text-yellow-500" size="48"></i>
                     </div>
-                    <div class="step-paragraph">
-                        Using a laptop or iPad to transfer photos may corrupt or crash the SD card, potentially losing all your photos. If you absolutely must use these devices, you must notify the staff first.
-                    </div>
-                </div>
-
-                <div class="step-block">
-                    <div class="flex justify-between items-start">
-                        <span class="step-number">3</span>
-                        <i data-lucide="heart-handshake" style="color: #22c55e;"></i>
-                    </div>
-                    <div class="step-paragraph">
-                        You are allowed to remove the cap and casing, but do so carefully. Any damage to the equipment results in a loss of your deposit. All items (camera, pouch, and bag) must be returned to receive a full deposit refund.
+                    <div class="text-[17px] leading-relaxed">
+                        <p>Using a laptop or iPad to transfer photos may corrupt or crash the SD card, potentially losing all your photos. If you absolutely must use these devices, you must notify the staff first.</p>
                     </div>
                 </div>
 
-                <div class="step-block">
-                    <div class="flex justify-between items-start">
-                        <span class="step-number">4</span>
-                        <i data-lucide="smartphone" style="color: #3b82f6;"></i>
+                <div class="grid-step step-3">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-4xl font-black italic">03.</span>
+                        <i data-lucide="heart-handshake" class="text-green-500" size="48"></i>
                     </div>
-                    <div class="step-paragraph">
-                        Transferring photos is your responsibility. The service does not provide free photo transfers. If you want the staff to handle the transfer for you, a service fee of RM100 applies. If your SD card reader fails, they recommend using the following apps:
-                        
-                        <div class="app-link-box">
-                            <a href="https://my.canon/en/consumer/camera-connect/main/product" class="app-link-item"><i data-lucide="link" size="14"></i> Canon Camera Connect</a>
-                            <a href="https://www.dji.com/global/downloads/djiapp/dji-mimo" class="app-link-item"><i data-lucide="link" size="14"></i> DJI Mimo</a>
-                            <a href="https://leica-camera.com/en-int/leica-fotos-app" class="app-link-item"><i data-lucide="link" size="14"></i> Leica FOTOS</a>
-                            <a href="https://www.fujifilm-x.com/en-my/products/software/xapp/" class="app-link-item"><i data-lucide="link" size="14"></i> FUJIFILM XApp</a>
+                    <div class="text-[17px] leading-relaxed">
+                        <p>You are allowed to remove the cap and casing, but do so carefully. Any damage to the equipment results in a loss of your deposit. All items (camera, pouch, and bag) must be returned to receive a full deposit refund.</p>
+                    </div>
+                </div>
+
+                <div class="grid-step step-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-4xl font-black italic">04.</span>
+                        <i data-lucide="smartphone" class="text-blue-500" size="48"></i>
+                    </div>
+                    <div class="text-[17px] leading-relaxed">
+                        <p>Transferring photos is your responsibility. The service does not provide free photo transfers. If you want the staff to handle the transfer for you, a service fee of RM100 applies. If your SD card reader fails, they recommend using the following apps:</p>
+                        <div class="mt-8 space-y-4">
+                            <a href="https://my.canon/en/consumer/camera-connect/main/product" target="_blank" class="app-link-container"><i data-lucide="link" size="20"></i> Canon Camera Connect</a>
+                            <a href="https://www.dji.com/global/downloads/djiapp/dji-mimo" target="_blank" class="app-link-container"><i data-lucide="link" size="20"></i> DJI Mimo</a>
+                            <a href="https://leica-camera.com/en-int/leica-fotos-app" target="_blank" class="app-link-container"><i data-lucide="link" size="20"></i> Leica FOTOS</a>
+                            <a href="https://www.fujifilm-x.com/en-my/products/software/xapp/" target="_blank" class="app-link-container"><i data-lucide="link" size="20"></i> FUJIFILM XApp</a>
                         </div>
                     </div>
                 </div>
@@ -254,61 +209,55 @@
             </div>
         </div>
 
-        <div class="bento-box" style="padding: 40px; text-align: center; background-color: #ff8eb2;">
-            <h3 style="font-size: 28px; font-weight: 700; text-transform: uppercase; font-style: italic; margin-bottom: 10px;">Important Deposit Information</h3>
-            <p style="font-weight: 700;">Refund Timeline: Deposits are processed and returned within 3 working days after the camera is returned.</p>
+        <div class="bento-card p-12 bg-pink-400 text-center">
+            <h4 class="font-black uppercase italic text-3xl mb-4 text-black">Important Deposit Information</h4>
+            <p class="font-bold text-xl text-black">Refund Timeline: Deposits are processed and returned within 3 working days after the camera is returned.</p>
         </div>
 
-        <div class="bento-box" style="padding: 60px;">
-            <h2 style="font-size: 40px; font-weight: 700; font-style: italic; text-transform: uppercase; margin-bottom: 40px;">Book Request ✨</h2>
+        <div class="bento-card p-12 md:p-20">
+            <h2 class="text-5xl font-black italic uppercase mb-16">Book Request ✨</h2>
             
-            <form id="bookingForm">
-                <div style="display: grid; grid-template-columns: 1fr; gap: 20px;">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                        <div class="form-group">
-                            <label class="form-label">Your Name</label>
-                            <input type="text" name="name" class="form-input" placeholder="Name" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Select Camera</label>
-                            <select name="camera" class="form-input">
-                                <option>Leica D-Lux 8</option>
-                                <option>Leica D-Lux 7</option>
-                                <option>Canon G7X Mark III</option>
-                                <option>Canon G7X Mark II</option>
-                                <option>DJI OSMO Pocket 3</option>
-                                <option>Insta360 X3</option>
-                                <option>Fujifilm X-M5</option>
-                                <option>Canon EOS R50</option>
-                            </select>
-                        </div>
+            <form id="bookingForm" class="space-y-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div>
+                        <label class="label-style">Your Name</label>
+                        <input type="text" name="name" placeholder="Name" class="input-field-custom" required>
                     </div>
+                    <div>
+                        <label class="label-style">Select Camera</label>
+                        <select name="camera" class="input-field-custom">
+                            <option>Leica D-Lux 8</option>
+                            <option>Leica D-Lux 7</option>
+                            <option>Canon G7X Mark III</option>
+                            <option>Canon G7X Mark II</option>
+                            <option>DJI OSMO Pocket 3</option>
+                            <option>Insta360 X3</option>
+                            <option>Fujifilm X-M5</option>
+                            <option>Canon EOS R50</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="label-style">WhatsApp Number</label>
+                        <input type="tel" name="whatsapp" placeholder="60..." class="input-field-custom" required>
+                    </div>
+                    <div>
+                        <label class="label-style">Email Address</label>
+                        <input type="email" name="email" placeholder="email@example.com" class="input-field-custom" required>
+                    </div>
+                    <div>
+                        <label class="label-style">Start Date</label>
+                        <input type="date" name="startDate" class="input-field-custom" required>
+                    </div>
+                    <div>
+                        <label class="label-style">Return Date</label>
+                        <input type="date" name="returnDate" class="input-field-custom" required>
+                    </div>
+                </div>
 
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                        <div class="form-group">
-                            <label class="form-label">WhatsApp Number</label>
-                            <input type="tel" name="whatsapp" class="form-input" placeholder="60..." required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Email Address</label>
-                            <input type="email" name="email" class="form-input" placeholder="email@example.com" required>
-                        </div>
-                    </div>
-
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                        <div class="form-group">
-                            <label class="form-label">Start Date</label>
-                            <input type="date" name="startDate" class="form-input" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Return Date</label>
-                            <input type="date" name="returnDate" class="form-input" required>
-                        </div>
-                    </div>
-
-                    <div style="margin-top: 20px;">
-                        <button type="submit" class="submit-button">Confirm Request 💖</button>
-                    </div>
+                <div class="pt-10">
+                    <button type="submit" class="confirm-btn-massive">
+                        CONFIRM REQUEST 💖
+                    </button>
                 </div>
             </form>
         </div>
@@ -316,16 +265,7 @@
     </div>
 
     <script>
-        // Start Icons
         lucide.createIcons();
-
-        // Basic date check
-        const form = document.getElementById('bookingForm');
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Request Sent! Check your WhatsApp soon! ✨');
-        });
     </script>
-
 </body>
 </html>
