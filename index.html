@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rent.With.Us | Sweet Gear</title>
+    <title>Rent.With.Us | Booking</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -12,122 +12,97 @@
             background-color: #FFF5F7; 
             background-image: radial-gradient(#ffc2d1 0.8px, transparent 0.8px);
             background-size: 24px 24px;
+            color: #000;
         }
 
-        /* The "Bento Box" Look */
+        /* Essential Bento Box Style */
         .bento-box { 
-            @apply border-[4px] border-black rounded-[2.5rem] p-6 bg-white shadow-[10px_10px_0px_0px_#000] transition-all duration-300; 
+            @apply border-[4px] border-black rounded-[2.5rem] p-6 bg-white shadow-[10px_10px_0px_0px_#000] overflow-hidden; 
         }
-        .bento-box:hover { @apply shadow-[14px_14px_0px_0px_#000] -translate-y-1; }
 
-        /* Animated Bubble Title */
         .bubble-title {
             color: #ff8eb2;
-            -webkit-text-stroke: 3px black;
+            -webkit-text-stroke: 2px black;
             filter: drop-shadow(4px 4px 0px #000);
-            animation: pulse-cute 2s ease-in-out infinite;
+            animation: bounce-gentle 3s ease-in-out infinite;
         }
 
-        @keyframes pulse-cute {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        @keyframes bounce-gentle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
-        .input-field { @apply w-full border-[3px] border-black p-3 rounded-2xl focus:bg-pink-50 outline-none font-bold; }
+        .input-field { @apply w-full border-[3px] border-black p-3 rounded-2xl focus:bg-pink-50 outline-none font-bold placeholder-gray-400; }
+        
+        label { @apply block font-bold mb-1 ml-1 text-sm uppercase italic; }
     </style>
 </head>
 <body class="p-6 md:p-12">
 
-    <div class="max-w-5xl mx-auto space-y-10">
+    <div class="max-w-4xl mx-auto space-y-8">
         
-        <div class="text-center space-y-4">
-            <p class="font-bold tracking-[0.4em] text-black uppercase">Rent . With . Us</p>
+        <div class="text-center space-y-2 mb-10">
+            <p class="font-bold tracking-[0.5em] uppercase text-sm">Rent . With . Us</p>
             <h1 class="text-6xl md:text-8xl font-bold bubble-title uppercase italic">Rental Camera</h1>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bento-box h-64 md:h-80 flex items-center justify-center bg-pink-100 border-dashed border-pink-400">
+                <span class="text-pink-400 font-bold italic uppercase tracking-widest">[ Insert Image 1 Here ]</span>
+                </div>
+            <div class="bento-box h-64 md:h-80 flex items-center justify-center bg-blue-100 border-dashed border-blue-400">
+                <span class="text-blue-400 font-bold italic uppercase tracking-widest">[ Insert Image 2 Here ]</span>
+                </div>
+        </div>
+
+        <div class="bento-box bg-white">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="w-4 h-4 rounded-full bg-pink-400 border-2 border-black animate-ping"></div>
+                <h2 class="text-3xl font-black italic uppercase tracking-tight">Book Request ✨</h2>
+            </div>
+
+            <form id="bookingForm" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label>Your Name</label>
+                        <input type="text" name="name" placeholder="E.g. Sweet Pea" class="input-field" required>
+                    </div>
+                    <div>
+                        <label>Select Camera</label>
+                        <select name="camera" class="input-field appearance-none cursor-pointer">
+                            <option>Leica D-Lux 8</option>
+                            <option>Leica D-Lux 7</option>
+                            <option>Canon G7X Mark III</option>
+                            <option>Canon G7X Mark II</option>
+                            <option>DJI OSMO Pocket 3 (Creator Combo)</option>
+                            <option>Insta360 X3</option>
+                            <option>Fujifilm X-M5</option>
+                            <option>Canon EOS R50</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label>Booking Period (Start)</label>
+                        <input type="date" name="startDate" class="input-field" required>
+                    </div>
+                    <div>
+                        <label>Return Date</label>
+                        <input type="date" name="returnDate" class="input-field" required>
+                    </div>
+                </div>
+
+                <button type="submit" id="submitBtn" class="w-full bg-[#ff8eb2] hover:bg-pink-400 border-[4px] border-black p-5 rounded-[2rem] font-black text-2xl shadow-[6px_6px_0px_0px_#000] active:shadow-none active:translate-y-1 transition-all">
+                    CONFIRM REQUEST 💖
+                </button>
+            </form>
             
-            <div class="bento-box md:col-span-7 bg-white">
-                <div class="flex items-center gap-3 mb-6">
-                    <span class="bg-yellow-300 border-2 border-black px-3 py-1 rounded-full font-bold shadow-[3px_3px_0px_0px_#000]">BOOK NOW</span>
-                    <h2 class="text-2xl font-black italic uppercase">Reserve Your Gear</h2>
-                </div>
-                
-                <form id="bookingForm" class="space-y-4">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" name="name" placeholder="Your Name" class="input-field" required>
-                        <input type="date" name="date" class="input-field" required>
-                    </div>
-                    
-                    <select name="camera" class="input-field appearance-none cursor-pointer">
-                        <option>Leica D-Lux 8</option>
-                        <option>Leica D-Lux 7</option>
-                        <option>Canon G7X Mark III</option>
-                        <option>Canon G7X Mark II</option>
-                        <option>DJI OSMO Pocket 3 (Creator Combo)</option>
-                        <option>Insta360 X3</option>
-                        <option>Fujifilm X-M5</option>
-                        <option>Canon EOS R50</option>
-                    </select>
-
-                    <button type="submit" id="submitBtn" class="w-full bg-[#ff8eb2] hover:bg-pink-400 border-[4px] border-black p-4 rounded-3xl font-black text-xl shadow-[6px_6px_0px_0px_#000] active:shadow-none active:translate-y-1 transition-all">
-                        CONFIRM BOOKING ✨
-                    </button>
-                </form>
-                <p id="msg" class="mt-4 text-center hidden font-bold text-pink-500 animate-bounce">Yay! Request Sent! 🎀</p>
+            <div id="msg" class="mt-6 text-center hidden font-black text-rose-500 uppercase tracking-widest animate-pulse">
+                Sent to the sheets! See you soon! 🎀
             </div>
-
-            <div class="bento-box md:col-span-5 bg-pink-100 flex flex-col justify-center text-center">
-                <h3 class="text-xl font-black underline mb-4 uppercase">Deposit Details</h3>
-                <div class="space-y-2 font-bold text-2xl">
-                    <p>RM30 <span class="text-sm block opacity-60">(Booking Fee)</span></p>
-                    <p class="text-pink-500">+</p>
-                    <p>RM70 <span class="text-sm block opacity-60">(Security Depo)</span></p>
-                </div>
-                <div class="mt-6 p-2 bg-white border-2 border-dashed border-pink-400 rounded-xl text-xs font-bold italic">
-                    *Refunded within 3 working days
-                </div>
-            </div>
-
-            <div class="bento-box md:col-span-6 bg-[#E0F7FA]">
-                <h3 class="text-2xl font-black uppercase mb-4 italic flex items-center gap-2">
-                    ✅ Do's & Don'ts ❌
-                </h3>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-white border-2 border-black rounded-2xl p-4 text-center">
-                        <p class="text-4xl mb-2">📸</p>
-                        <p class="font-bold text-xs uppercase">Keep lens cap on when not in use</p>
-                    </div>
-                    <div class="bg-white border-2 border-black rounded-2xl p-4 text-center border-rose-300 bg-rose-50">
-                        <p class="text-4xl mb-2">💻</p>
-                        <p class="font-bold text-xs uppercase text-rose-600">No iPad/Laptop transfer</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bento-box md:col-span-6 bg-[#FFF9C4]">
-                <h3 class="text-2xl font-black uppercase mb-4 italic">How to Rent? 🎈</h3>
-                <div class="space-y-3 text-sm font-bold uppercase tracking-tighter">
-                    <div class="flex gap-3 items-center">
-                        <span class="bg-black text-white rounded-full w-6 h-6 flex items-center justify-center">1</span>
-                        <span>Pick your camera & date above</span>
-                    </div>
-                    <div class="flex gap-3 items-center">
-                        <span class="bg-black text-white rounded-full w-6 h-6 flex items-center justify-center">2</span>
-                        <span>Pay RM30 to lock your slot</span>
-                    </div>
-                    <div class="flex gap-3 items-center">
-                        <span class="bg-black text-white rounded-full w-6 h-6 flex items-center justify-center">3</span>
-                        <span>Pick up & pay balance on the day!</span>
-                    </div>
-                </div>
-            </div>
-
         </div>
 
-        <div class="border-[4px] border-black bg-white rounded-full p-4 text-center font-bold shadow-[6px_6px_0px_0px_#000]">
-            📍 Pick up location: Studio City, 10 AM - 10 PM
-        </div>
+        <p class="text-center font-bold opacity-30 text-xs uppercase tracking-widest">Kindly return gear in original condition.</p>
+
     </div>
 
     <script>
@@ -139,18 +114,18 @@
         form.addEventListener('submit', e => {
             e.preventDefault();
             btn.disabled = true;
-            btn.innerText = "SQUISHING DATA... ✨";
+            btn.innerText = "SENDING... ✨";
             
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                 .then(response => {
                     msg.classList.remove('hidden');
                     form.reset();
                     btn.disabled = false;
-                    btn.innerText = "CONFIRM BOOKING ✨";
+                    btn.innerText = "CONFIRM REQUEST 💖";
                 })
                 .catch(error => {
                     console.error('Error!', error.message);
-                    btn.innerText = "TRY AGAIN?";
+                    btn.innerText = "ERROR! TRY AGAIN?";
                     btn.disabled = false;
                 });
         });
