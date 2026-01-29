@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rent.With.Us | Booking</title>
+    <title>Rent.With.Us | Sweet Camera Shop</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -17,9 +17,10 @@
 
         /* Essential Bento Box Style */
         .bento-box { 
-            @apply border-[4px] border-black rounded-[2.5rem] p-6 bg-white shadow-[10px_10px_0px_0px_#000] overflow-hidden; 
+            @apply border-[4px] border-black rounded-[2.5rem] p-6 bg-white shadow-[10px_10px_0px_0px_#000] overflow-hidden relative; 
         }
 
+        /* Pink Cute Title Animation */
         .bubble-title {
             color: #ff8eb2;
             -webkit-text-stroke: 2px black;
@@ -32,30 +33,43 @@
             50% { transform: translateY(-10px); }
         }
 
-        .input-field { @apply w-full border-[3px] border-black p-3 rounded-2xl focus:bg-pink-50 outline-none font-bold placeholder-gray-400; }
+        .input-field { 
+            @apply w-full border-[3px] border-black p-3 rounded-2xl focus:bg-pink-50 outline-none font-bold placeholder-gray-400 appearance-none bg-white; 
+        }
         
-        label { @apply block font-bold mb-1 ml-1 text-sm uppercase italic; }
+        label { @apply block font-bold mb-1 ml-1 text-sm uppercase italic text-pink-500; }
+
+        /* Smooth Fading for Slideshow */
+        .slide {
+            @apply absolute inset-0 w-full h-full object-cover transition-opacity duration-1000;
+        }
     </style>
 </head>
-<body class="p-6 md:p-12">
+<body class="p-4 md:p-12">
 
     <div class="max-w-4xl mx-auto space-y-8">
         
-        <div class="text-center space-y-2 mb-10">
-            <p class="font-bold tracking-[0.5em] uppercase text-sm">Rent . With . Us</p>
+        <div class="text-center space-y-2 mb-6">
+            <p class="font-bold tracking-[0.5em] uppercase text-xs">Rent . With . Us</p>
             <h1 class="text-6xl md:text-8xl font-bold bubble-title uppercase italic">Rental Camera</h1>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bento-box h-64 md:h-80 flex items-center justify-center bg-pink-100 border-dashed border-pink-400">
-                <span class="text-pink-400 font-bold italic uppercase tracking-widest">[ Insert Image 1 Here ]</span>
-                </div>
-            <div class="bento-box h-64 md:h-80 flex items-center justify-center bg-blue-100 border-dashed border-blue-400">
-                <span class="text-blue-400 font-bold italic uppercase tracking-widest">[ Insert Image 2 Here ]</span>
-                </div>
+        <div class="bento-box h-72 md:h-[450px] p-0">
+            <img id="slide1" 
+                 src="https://github.com/cyrilalvin99/Testcuteshopwebsite/blob/main/images/1.PNG?raw=true" 
+                 class="slide opacity-100" 
+                 alt="Camera 1">
+            <img id="slide2" 
+                 src="https://github.com/cyrilalvin99/Testcuteshopwebsite/blob/main/images/2.PNG?raw=true" 
+                 class="slide opacity-0" 
+                 alt="Camera 2">
+            
+            <div class="absolute bottom-4 left-4 bg-white border-2 border-black px-4 py-1 rounded-full font-bold shadow-[3px_3px_0px_0px_#000] text-xs md:text-sm">
+                ✨ OUR GEAR COLLECTION
+            </div>
         </div>
 
-        <div class="bento-box bg-white">
+        <div class="bento-box">
             <div class="flex items-center gap-3 mb-8">
                 <div class="w-4 h-4 rounded-full bg-pink-400 border-2 border-black animate-ping"></div>
                 <h2 class="text-3xl font-black italic uppercase tracking-tight">Book Request ✨</h2>
@@ -69,7 +83,7 @@
                     </div>
                     <div>
                         <label>Select Camera</label>
-                        <select name="camera" class="input-field appearance-none cursor-pointer">
+                        <select name="camera" class="input-field cursor-pointer">
                             <option>Leica D-Lux 8</option>
                             <option>Leica D-Lux 7</option>
                             <option>Canon G7X Mark III</option>
@@ -80,7 +94,20 @@
                             <option>Canon EOS R50</option>
                         </select>
                     </div>
+                </div>
 
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label>WhatsApp Number 📱</label>
+                        <input type="tel" name="whatsapp" placeholder="60123456789" class="input-field" required>
+                    </div>
+                    <div>
+                        <label>Email Address 💌</label>
+                        <input type="email" name="email" placeholder="hello@sweet.com" class="input-field" required>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label>Booking Period (Start)</label>
                         <input type="date" name="startDate" class="input-field" required>
@@ -97,15 +124,35 @@
             </form>
             
             <div id="msg" class="mt-6 text-center hidden font-black text-rose-500 uppercase tracking-widest animate-pulse">
-                Sent to the sheets! See you soon! 🎀
+                Sent! Check your WhatsApp soon! 🎀
             </div>
         </div>
 
-        <p class="text-center font-bold opacity-30 text-xs uppercase tracking-widest">Kindly return gear in original condition.</p>
+        <p class="text-center font-bold opacity-30 text-xs uppercase tracking-[0.3em] pb-10">
+            Kindly return gear in original condition.
+        </p>
 
     </div>
 
     <script>
+        // 1. SLIDESHOW LOGIC
+        let currentSlide = 1;
+        const s1 = document.getElementById('slide1');
+        const s2 = document.getElementById('slide2');
+
+        setInterval(() => {
+            if (currentSlide === 1) {
+                s1.style.opacity = '0';
+                s2.style.opacity = '1';
+                currentSlide = 2;
+            } else {
+                s1.style.opacity = '1';
+                s2.style.opacity = '0';
+                currentSlide = 1;
+            }
+        }, 3500); // Fades every 3.5 seconds
+
+        // 2. GOOGLE SHEETS LOGIC
         const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
         const form = document.getElementById('bookingForm');
         const btn = document.getElementById('submitBtn');
