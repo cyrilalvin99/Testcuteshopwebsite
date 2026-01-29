@@ -12,15 +12,19 @@
             background-color: #FFF5F7; 
             background-image: radial-gradient(#ffc2d1 0.8px, transparent 0.8px);
             background-size: 24px 24px;
-            color: #000;
         }
 
-        /* Essential Bento Box Style */
-        .bento-box { 
-            @apply border-[4px] border-black rounded-[2.5rem] p-6 bg-white shadow-[10px_10px_0px_0px_#000] overflow-hidden relative; 
+        /* HARD-CODED BENTO STYLE - This ensures the boxes ALWAYS show up */
+        .bento-container {
+            border: 4px solid black !important;
+            border-radius: 2.5rem !important;
+            background-color: white !important;
+            box-shadow: 10px 10px 0px 0px rgba(0,0,0,1) !important;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 2rem;
         }
 
-        /* Pink Cute Title Animation */
         .bubble-title {
             color: #ff8eb2;
             -webkit-text-stroke: 2px black;
@@ -34,44 +38,53 @@
         }
 
         .input-field { 
-            @apply w-full border-[3px] border-black p-3 rounded-2xl focus:bg-pink-50 outline-none font-bold placeholder-gray-400 appearance-none bg-white; 
+            border: 3px solid black !important;
+            border-radius: 1rem !important;
+            padding: 0.75rem !important;
+            font-weight: bold !important;
+            width: 100%;
+            outline: none;
         }
         
-        label { @apply block font-bold mb-1 ml-1 text-sm uppercase italic text-pink-500; }
-
-        /* Smooth Fading for Slideshow */
-        .slide {
-            @apply absolute inset-0 w-full h-full object-cover transition-opacity duration-1000;
+        label { 
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+            margin-left: 0.25rem;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            font-style: italic;
+            color: #f472b6;
         }
     </style>
 </head>
 <body class="p-4 md:p-12">
 
-    <div class="max-w-4xl mx-auto space-y-8">
+    <div class="max-w-4xl mx-auto">
         
-        <div class="text-center space-y-2 mb-6">
-            <p class="font-bold tracking-[0.5em] uppercase text-xs">Rent . With . Us</p>
-            <h1 class="text-6xl md:text-8xl font-bold bubble-title uppercase italic">Rental Camera</h1>
+        <div class="text-center mb-10">
+            <p class="font-bold tracking-[0.5em] uppercase text-[10px] mb-2">Rent . With . Us</p>
+            <h1 class="text-5xl md:text-7xl font-bold bubble-title uppercase italic">Rental Camera</h1>
         </div>
 
-        <div class="bento-box h-72 md:h-[450px] p-0">
+        <div class="bento-container h-72 md:h-[500px]">
             <img id="slide1" 
                  src="https://github.com/cyrilalvin99/Testcuteshopwebsite/blob/main/images/1.PNG?raw=true" 
-                 class="slide opacity-100" 
+                 style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 1s; opacity: 1;" 
                  alt="Camera 1">
             <img id="slide2" 
                  src="https://github.com/cyrilalvin99/Testcuteshopwebsite/blob/main/images/2.PNG?raw=true" 
-                 class="slide opacity-0" 
+                 style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 1s; opacity: 0;" 
                  alt="Camera 2">
             
-            <div class="absolute bottom-4 left-4 bg-white border-2 border-black px-4 py-1 rounded-full font-bold shadow-[3px_3px_0px_0px_#000] text-xs md:text-sm">
+            <div style="position: absolute; bottom: 1rem; left: 1rem; background: white; border: 2px solid black; padding: 4px 16px; border-radius: 99px; font-weight: bold; box-shadow: 3px 3px 0px black; font-size: 0.75rem;">
                 ✨ OUR GEAR COLLECTION
             </div>
         </div>
 
-        <div class="bento-box">
+        <div class="bento-container p-6 md:p-10">
             <div class="flex items-center gap-3 mb-8">
-                <div class="w-4 h-4 rounded-full bg-pink-400 border-2 border-black animate-ping"></div>
+                <div style="width: 1rem; height: 1rem; background: #f472b6; border: 2px solid black; border-radius: 99px;"></div>
                 <h2 class="text-3xl font-black italic uppercase tracking-tight">Book Request ✨</h2>
             </div>
 
@@ -118,28 +131,27 @@
                     </div>
                 </div>
 
-                <button type="submit" id="submitBtn" class="w-full bg-[#ff8eb2] hover:bg-pink-400 border-[4px] border-black p-5 rounded-[2rem] font-black text-2xl shadow-[6px_6px_0px_0px_#000] active:shadow-none active:translate-y-1 transition-all">
+                <button type="submit" id="submitBtn" style="width: 100%; background: #ff8eb2; border: 4px solid black; padding: 1.25rem; border-radius: 2rem; font-weight: 900; font-size: 1.5rem; box-shadow: 6px 6px 0px black; cursor: pointer; transition: all 0.2s;" onmousedown="this.style.transform='translateY(4px)'; this.style.boxShadow='2px 2px 0px black'" onmouseup="this.style.transform='translateY(0)'; this.style.boxShadow='6px 6px 0px black'">
                     CONFIRM REQUEST 💖
                 </button>
             </form>
             
-            <div id="msg" class="mt-6 text-center hidden font-black text-rose-500 uppercase tracking-widest animate-pulse">
+            <div id="msg" style="display: none; margin-top: 1.5rem; text-align: center; font-weight: 900; color: #e11d48; text-transform: uppercase; letter-spacing: 0.1em;">
                 Sent! Check your WhatsApp soon! 🎀
             </div>
         </div>
 
-        <p class="text-center font-bold opacity-30 text-xs uppercase tracking-[0.3em] pb-10">
+        <p class="text-center font-bold opacity-30 text-[10px] uppercase tracking-[0.3em] pb-10">
             Kindly return gear in original condition.
         </p>
 
     </div>
 
     <script>
-        // 1. SLIDESHOW LOGIC
+        // SLIDESHOW
         let currentSlide = 1;
         const s1 = document.getElementById('slide1');
         const s2 = document.getElementById('slide2');
-
         setInterval(() => {
             if (currentSlide === 1) {
                 s1.style.opacity = '0';
@@ -150,9 +162,9 @@
                 s2.style.opacity = '0';
                 currentSlide = 1;
             }
-        }, 3500); // Fades every 3.5 seconds
+        }, 3500);
 
-        // 2. GOOGLE SHEETS LOGIC
+        // FORM SUBMISSION
         const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
         const form = document.getElementById('bookingForm');
         const btn = document.getElementById('submitBtn');
@@ -165,7 +177,7 @@
             
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                 .then(response => {
-                    msg.classList.remove('hidden');
+                    msg.style.display = 'block';
                     form.reset();
                     btn.disabled = false;
                     btn.innerText = "CONFIRM REQUEST 💖";
