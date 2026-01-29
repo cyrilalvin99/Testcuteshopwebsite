@@ -6,6 +6,7 @@
     <title>Rent.With.Us | Sweet Camera Shop</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body { 
             font-family: 'Fredoka', sans-serif; 
@@ -16,12 +17,12 @@
 
         .bento-container {
             border: 4px solid black !important;
-            border-radius: 2.5rem !important;
+            border-radius: 2rem !important;
             background-color: white !important;
-            box-shadow: 10px 10px 0px 0px rgba(0,0,0,1) !important;
+            box-shadow: 8px 8px 0px 0px rgba(0,0,0,1) !important;
             overflow: hidden;
             position: relative;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
         }
 
         .bubble-title {
@@ -47,8 +48,13 @@
         }
         
         label { 
-            display: block; font-weight: bold; margin-bottom: 0.25rem; font-size: 0.875rem;
+            display: flex; align-items: center; gap: 0.5rem;
+            font-weight: bold; margin-bottom: 0.25rem; font-size: 0.875rem;
             text-transform: uppercase; font-style: italic; color: #f472b6;
+        }
+
+        .app-badge {
+            @apply flex items-center gap-2 bg-gray-100 px-3 py-1.5 border-2 border-black rounded-xl text-[10px] font-black uppercase;
         }
 
         #popup-overlay {
@@ -62,25 +68,18 @@
             justify-content: center;
             padding: 20px;
         }
-
-        
-        .poster-ratio {
-            width: 100%;
-            aspect-ratio: 3 / 4;
-            max-width: 600px; 
-            margin-left: auto;
-            margin-right: auto;
-        }
     </style>
 </head>
 <body class="p-4 md:p-12">
 
     <div id="popup-overlay">
-        <div class="bento-container max-w-md w-full p-10 text-center space-y-4">
-            <div class="text-6xl mb-4">💌</div>
-            <h3 class="text-3xl font-black italic uppercase tracking-tight text-pink-500">Details Received!</h3>
-            <p class="font-bold text-gray-700">Yay! We've got your request. Our team will reach out to you via WhatsApp soon to confirm your booking! </p>
-            <button onclick="closePopup()" class="w-full bg-black text-white p-4 rounded-2xl font-black uppercase tracking-widest hover:bg-gray-800 transition shadow-[4px_4px_0px_0px_#ff8eb2]">
+        <div class="bento-container max-w-md w-full p-8 text-center space-y-4">
+            <div class="flex justify-center text-pink-500">
+                <i data-lucide="party-popper" size="64"></i>
+            </div>
+            <h3 class="text-2xl font-black italic uppercase text-pink-500">Details Received!</h3>
+            <p class="font-bold text-gray-700">Yay! We've got your request. Our team will reach out via WhatsApp soon to confirm! ✨</p>
+            <button onclick="closePopup()" class="w-full bg-black text-white p-4 rounded-2xl font-black uppercase shadow-[4px_4px_0px_0px_#ff8eb2] hover:scale-105 transition-transform">
                 Okay, Got it!
             </button>
         </div>
@@ -93,35 +92,99 @@
             <h1 class="text-5xl md:text-7xl font-bold bubble-title uppercase italic">Rental Camera</h1>
         </div>
 
-        <div class="bento-container poster-ratio">
-            <img id="slide1" 
-                 src="https://raw.githubusercontent.com/cyrilalvin99/Testcuteshopwebsite/main/images/IMG-20251216-WA0000.jpg" 
-                 style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: white; transition: opacity 1s; opacity: 1;">
-            <img id="slide2" 
-                 src="https://raw.githubusercontent.com/cyrilalvin99/Testcuteshopwebsite/main/images/IMG-20251216-WA0001.jpg" 
-                 style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: white; transition: opacity 1s; opacity: 0;">
+        <div class="bento-container h-48 md:h-64 mb-8">
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/16725915900155124386_0" 
+                 class="w-full h-full object-cover" alt="Aesthetic Camera Setup">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-6">
+                <span class="text-white font-black italic uppercase tracking-widest text-lg">Premium Gear for Your Memories</span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            
+            <div class="bento-container p-6 bg-white">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="bg-pink-400 p-2 border-2 border-black rounded-lg">
+                        <i data-lucide="camera" size="20"></i>
+                    </div>
+                    <h3 class="font-black uppercase italic text-lg">01. Test First!</h3>
+                </div>
+                <ul class="text-sm font-medium space-y-2 text-gray-800">
+                    <li class="flex gap-2"><span>•</span> Snap 1–2 test photos immediately.</li>
+                    <li class="flex gap-2"><span>•</span> Verify gallery & phone transfer.</li>
+                    <li class="flex gap-2 text-rose-500 font-bold"><span>•</span> Report issues/cracks instantly!</li>
+                </ul>
+            </div>
+
+            <div class="bento-container p-6 bg-pink-50/30">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="bg-yellow-400 p-2 border-2 border-black rounded-lg">
+                        <i data-lucide="zap-off" size="20"></i>
+                    </div>
+                    <h3 class="font-black uppercase italic text-lg">02. Transfer Risks</h3>
+                </div>
+                <p class="text-sm font-medium text-gray-800">
+                    Avoid iPads or Laptops! They can <strong>corrupt the SD card</strong>. Please notify staff first if you must use them.
+                </p>
+            </div>
+
+            <div class="bento-container p-6">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="bg-green-400 p-2 border-2 border-black rounded-lg">
+                        <i data-lucide="heart-handshake" size="20"></i>
+                    </div>
+                    <h3 class="font-black uppercase italic text-lg">03. Handle with Care</h3>
+                </div>
+                <p class="text-sm font-medium text-gray-800">
+                    Casing removal is allowed. However, any damage results in <strong>deposit loss</strong>. Return all items (pouch/bag).
+                </p>
+            </div>
+
+            <div class="bento-container p-6 bg-pink-50/30">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="bg-blue-400 p-2 border-2 border-black rounded-lg">
+                        <i data-lucide="smartphone-transfer" size="20"></i>
+                    </div>
+                    <h3 class="font-black uppercase italic text-lg">04. App Support</h3>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-2">
+                    <div class="app-badge"><i data-lucide="download" size="12"></i> Canon</div>
+                    <div class="app-badge"><i data-lucide="download" size="12"></i> DJI</div>
+                    <div class="app-badge"><i data-lucide="download" size="12"></i> Leica</div>
+                    <div class="app-badge"><i data-lucide="download" size="12"></i> Fujifilm</div>
+                </div>
+                <p class="text-[10px] mt-3 font-bold text-gray-500 italic">RM100 fee applies for staff transfer service.</p>
+            </div>
+        </div>
+
+        <div class="bento-container p-4 bg-pink-400 flex items-center justify-center gap-4 mb-8">
+            <i data-lucide="info" class="text-black"></i>
+            <div>
+                <h4 class="font-black uppercase italic text-xs">Refund Policy</h4>
+                <p class="font-bold text-[10px]">Deposits are returned within 3 working days post-return.</p>
+            </div>
         </div>
 
         <div class="bento-container p-6 md:p-10">
             <div class="flex items-center gap-3 mb-8">
-                <div style="width: 1rem; height: 1rem; background: #f472b6; border: 2px solid black; border-radius: 99px;"></div>
+                <div class="w-4 h-4 rounded-full bg-pink-400 border-2 border-black animate-pulse"></div>
                 <h2 class="text-3xl font-black italic uppercase tracking-tight">Book Request ✨</h2>
             </div>
 
             <form id="bookingForm" class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label>Your Name</label>
+                        <label><i data-lucide="user" size="14"></i> Name</label>
                         <input type="text" name="name" placeholder="Sweet Pea" class="input-field" required>
                     </div>
                     <div>
-                        <label>Select Camera</label>
+                        <label><i data-lucide="camera" size="14"></i> Camera</label>
                         <select name="camera" class="input-field">
                             <option>Leica D-Lux 8</option>
                             <option>Leica D-Lux 7</option>
                             <option>Canon G7X Mark III</option>
                             <option>Canon G7X Mark II</option>
-                            <option>DJI OSMO Pocket 3 (Creator Combo)</option>
+                            <option>DJI OSMO Pocket 3</option>
                             <option>Insta360 X3</option>
                             <option>Fujifilm X-M5</option>
                             <option>Canon EOS R50</option>
@@ -131,71 +194,72 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label>WhatsApp Number</label>
+                        <label><i data-lucide="phone" size="14"></i> WhatsApp</label>
                         <input type="tel" name="whatsapp" placeholder="60123456789" class="input-field" required>
                     </div>
                     <div>
-                        <label>Email Address</label>
+                        <label><i data-lucide="mail" size="14"></i> Email</label>
                         <input type="email" name="email" placeholder="hello@sweet.com" class="input-field" required>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label>Booking Period (Start)</label>
+                        <label><i data-lucide="calendar" size="14"></i> Start Date</label>
                         <input type="date" id="startDate" name="startDate" class="input-field" required>
                     </div>
                     <div>
-                        <label>Return Date</label>
+                        <label><i data-lucide="calendar-check" size="14"></i> Return Date</label>
                         <input type="date" id="returnDate" name="returnDate" class="input-field" required>
                     </div>
                 </div>
 
-                <button type="submit" id="submitBtn" style="width: 100%; background: #ff8eb2; border: 4px solid black; padding: 1.25rem; border-radius: 2rem; font-weight: 900; font-size: 1.5rem; box-shadow: 6px 6px 0px black; cursor: pointer;">
-                    CONFIRM REQUEST 💖
+                <button type="submit" id="submitBtn" class="w-full bg-[#ff8eb2] border-4 border-black p-5 rounded-[2rem] font-black text-2xl shadow-[6px_6px_0px_#000] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-3">
+                    CONFIRM REQUEST <i data-lucide="heart" fill="currentColor"></i>
                 </button>
             </form>
         </div>
     </div>
 
     <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Calendar Logic
         const startInput = document.getElementById('startDate');
         const returnInput = document.getElementById('returnDate');
         const today = new Date().toISOString().split('T')[0];
         startInput.setAttribute('min', today);
-        startInput.addEventListener('change', function() {
+        startInput.addEventListener('change', () => {
             returnInput.setAttribute('min', startInput.value);
-            if (returnInput.value < startInput.value) { returnInput.value = startInput.value; }
+            if (returnInput.value < startInput.value) returnInput.value = startInput.value;
         });
 
-        let currentSlide = 1;
-        const s1 = document.getElementById('slide1');
-        const s2 = document.getElementById('slide2');
-        setInterval(() => {
-            s1.style.opacity = currentSlide === 1 ? '0' : '1';
-            s2.style.opacity = currentSlide === 1 ? '1' : '0';
-            currentSlide = currentSlide === 1 ? 2 : 1;
-        }, 4000);
-
+        // Form Logic
         const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
         const form = document.getElementById('bookingForm');
-        const btn = document.getElementById('submitBtn');
         const overlay = document.getElementById('popup-overlay');
 
         form.addEventListener('submit', e => {
             e.preventDefault();
+            const btn = document.getElementById('submitBtn');
             btn.disabled = true;
-            btn.innerText = "SENDING... ✨";
+            btn.innerHTML = `SENDING... <i data-lucide="loader-2" class="animate-spin"></i>`;
+            lucide.createIcons();
+            
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                 .then(() => {
                     overlay.style.display = 'flex';
                     form.reset();
                     btn.disabled = false;
-                    btn.innerText = "CONFIRM REQUEST";
+                    btn.innerHTML = `CONFIRM REQUEST <i data-lucide="heart" fill="currentColor"></i>`;
+                    lucide.createIcons();
                 })
                 .catch(() => {
-                    btn.innerText = "ERROR! Please contact us via whatsapp for further assistance";
+                    alert("Submission failed!");
                     btn.disabled = false;
+                    btn.innerHTML = `CONFIRM REQUEST <i data-lucide="heart" fill="currentColor"></i>`;
+                    lucide.createIcons();
                 });
         });
 
