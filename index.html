@@ -11,204 +11,187 @@
         body { 
             font-family: 'Fredoka', sans-serif; 
             background-color: #FFF5F7; 
-            background-image: radial-gradient(#ffc2d1 0.8px, transparent 0.8px);
-            background-size: 24px 24px;
+            background-image: radial-gradient(#ffc2d1 1.2px, transparent 1.2px);
+            background-size: 30px 30px;
         }
 
         .bento-container {
             border: 4px solid black !important;
-            border-radius: 2rem !important;
+            border-radius: 2.5rem !important;
             background-color: white !important;
             box-shadow: 8px 8px 0px 0px rgba(0,0,0,1) !important;
             overflow: hidden;
             position: relative;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
 
         .bubble-title {
             color: #ff8eb2;
             -webkit-text-stroke: 2px black;
-            filter: drop-shadow(4px 4px 0px #000);
+            filter: drop-shadow(5px 5px 0px #000);
             animation: bounce-gentle 3s ease-in-out infinite;
         }
 
         @keyframes bounce-gentle {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Cute Dotted Grid */
+        @media (min-width: 768px) {
+            .pink-grid { position: relative; }
+            .pink-grid::before {
+                content: ""; position: absolute; top: 20px; bottom: 20px; left: 50%;
+                width: 0; border-left: 6px dotted #ffc2d1; transform: translateX(-50%); z-index: 1;
+            }
+            .pink-grid::after {
+                content: ""; position: absolute; left: 20px; right: 20px; top: 50%;
+                height: 0; border-top: 6px dotted #ffc2d1; transform: translateY(-50%); z-index: 1;
+            }
         }
 
         .input-field { 
             border: 3px solid black !important;
-            border-radius: 1rem !important;
-            padding: 0.75rem !important;
+            border-radius: 1.2rem !important;
+            padding: 0.8rem !important;
             font-weight: bold !important;
             width: 100%;
             outline: none;
         }
-        
-        label { 
-            display: flex; align-items: center; gap: 0.5rem;
-            font-weight: bold; margin-bottom: 0.25rem; font-size: 0.875rem;
-            text-transform: uppercase; font-style: italic; color: #f472b6;
-        }
 
         .brand-link {
-            @apply flex items-center gap-2 hover:text-pink-500 transition-colors font-bold text-[11px] underline decoration-pink-200;
-        }
-
-        /* The Pink Grid Lines */
-        @media (min-width: 768px) {
-            .pink-grid { position: relative; }
-            .pink-grid::before {
-                content: ""; position: absolute; top: 0; bottom: 0; left: 50%;
-                width: 4px; background-color: #ffc2d1; transform: translateX(-50%); z-index: 1;
-            }
-            .pink-grid::after {
-                content: ""; position: absolute; left: 0; right: 0; top: 50%;
-                height: 4px; background-color: #ffc2d1; transform: translateY(-50%); z-index: 1;
-            }
+            @apply flex items-center gap-2 text-pink-500 hover:text-pink-700 transition-colors font-bold text-[13px] underline decoration-dotted underline-offset-4;
         }
     </style>
 </head>
 <body class="p-4 md:p-12">
 
-    <div id="popup-overlay" class="fixed inset-0 hidden items-center justify-center bg-pink-100/40 backdrop-blur-md z-[100] p-5">
-        <div class="bento-container max-w-md w-full p-8 text-center space-y-4">
-            <div class="flex justify-center text-pink-500"><i data-lucide="party-popper" size="64"></i></div>
-            <h3 class="text-2xl font-black italic uppercase text-pink-500">Details Received!</h3>
-            <p class="font-bold text-gray-700">Check your WhatsApp soon! ✨</p>
-            <button onclick="document.getElementById('popup-overlay').style.display='none'" class="w-full bg-black text-white p-4 rounded-2xl font-black uppercase shadow-[4px_4px_0px_0px_#ff8eb2]">Okay!</button>
-        </div>
-    </div>
-
     <div class="max-w-4xl mx-auto">
+        
         <div class="text-center mb-10">
-            <p class="font-bold tracking-[0.5em] uppercase text-[10px] mb-2 text-black">Rent . With . Us</p>
-            <h1 class="text-5xl md:text-7xl font-bold bubble-title uppercase italic mb-6">Rental Camera</h1>
-        </div>
-
-        <div class="bento-container p-6 bg-black text-white text-center">
-            <p class="text-lg md:text-xl font-bold italic tracking-wide">
-                "A few do's and dont's to enjoy our cameras along the way"
-            </p>
+            <p class="font-bold tracking-[0.6em] uppercase text-[10px] mb-3 text-black opacity-60">Rent . With . Us</p>
+            <h1 class="text-6xl md:text-8xl font-bold bubble-title uppercase italic mb-8">Rental Camera</h1>
+            
+            <div class="inline-block bento-container p-6 px-10 bg-pink-100/50 border-dashed">
+                <p class="text-xl md:text-2xl font-black italic text-black leading-tight">
+                    "A few do's and dont's to enjoy our cameras along the way" ✨
+                </p>
+            </div>
         </div>
 
         <div class="bento-container">
             <div class="grid grid-cols-1 md:grid-cols-2 pink-grid">
                 
-                <div class="p-8 space-y-4 bg-white">
-                    <div class="flex items-start justify-between">
-                        <span class="text-gray-300 font-bold text-lg">01.</span>
-                        <div class="text-pink-400"><i data-lucide="camera" size="32"></i></div>
+                <div class="p-10 space-y-4 bg-white relative z-10">
+                    <div class="flex items-center justify-between">
+                        <span class="text-pink-200 font-black text-4xl italic">01.</span>
+                        <div class="bg-pink-100 p-3 rounded-2xl border-2 border-black shadow-[4px_4px_0px_black]"><i data-lucide="camera" class="text-pink-500"></i></div>
                     </div>
-                    <h3 class="font-black uppercase italic text-xl">Test First!</h3>
-                    <div class="text-sm font-medium leading-relaxed text-gray-700 space-y-3">
+                    <h3 class="font-black uppercase italic text-2xl">Test First!</h3>
+                    <div class="text-[14px] font-medium leading-relaxed text-gray-700 space-y-4">
                         <p><strong>Immediate Action:</strong> Upon receiving the camera, snap 1–2 test photos.</p>
                         <p><strong>Verification:</strong> View them in the gallery and transfer them to your phone to ensure the camera is working correctly.</p>
                         <p><strong>Reporting:</strong> If you notice any issues (cracks, defects, or "patches" in photos), record them and inform the rental service immediately.</p>
-                        <p class="text-rose-500 font-bold italic pt-2 border-t border-pink-50">Note: Failure to report issues early may result in the camera being considered damaged during your rental, which is non-refundable.</p>
+                        <p class="text-rose-500 font-bold italic">Note: Failure to report issues early may result in the camera being considered damaged during your rental, which is non-refundable.</p>
                     </div>
                 </div>
 
-                <div class="p-8 space-y-4 bg-white md:bg-pink-50/10">
-                    <div class="flex items-start justify-between">
-                        <span class="text-gray-300 font-bold text-lg">02.</span>
-                        <div class="text-yellow-500"><i data-lucide="monitor-off" size="32"></i></div>
+                <div class="p-10 space-y-4 bg-white relative z-10">
+                    <div class="flex items-center justify-between">
+                        <span class="text-pink-200 font-black text-4xl italic">02.</span>
+                        <div class="bg-yellow-100 p-3 rounded-2xl border-2 border-black shadow-[4px_4px_0px_black]"><i data-lucide="monitor-off" class="text-yellow-600"></i></div>
                     </div>
-                    <h3 class="font-black uppercase italic text-xl">Avoid Risk</h3>
-                    <div class="text-sm font-medium leading-relaxed text-gray-700 space-y-3">
-                        <p><strong>Avoid Transferring to iPad or Laptop:</strong> Using a laptop or iPad to transfer photos may corrupt or crash the SD card, potentially losing all your photos.</p>
+                    <h3 class="font-black uppercase italic text-2xl">Stay Safe</h3>
+                    <div class="text-[14px] font-medium leading-relaxed text-gray-700 space-y-4">
+                        <p><strong>Risk:</strong> Using a laptop or iPad to transfer photos may corrupt or crash the SD card, potentially losing all your photos.</p>
                         <p><strong>Protocol:</strong> If you absolutely must use these devices, you must notify the staff first.</p>
                     </div>
                 </div>
 
-                <div class="p-8 space-y-4 bg-white">
-                    <div class="flex items-start justify-between">
-                        <span class="text-gray-300 font-bold text-lg">03.</span>
-                        <div class="text-green-500"><i data-lucide="heart-handshake" size="32"></i></div>
+                <div class="p-10 space-y-4 bg-white relative z-10">
+                    <div class="flex items-center justify-between">
+                        <span class="text-pink-200 font-black text-4xl italic">03.</span>
+                        <div class="bg-green-100 p-3 rounded-2xl border-2 border-black shadow-[4px_4px_0px_black]"><i data-lucide="heart-handshake" class="text-green-600"></i></div>
                     </div>
-                    <h3 class="font-black uppercase italic text-xl">Handle With Care</h3>
-                    <div class="text-sm font-medium leading-relaxed text-gray-700 space-y-3">
+                    <h3 class="font-black uppercase italic text-2xl">Handle With Care</h3>
+                    <div class="text-[14px] font-medium leading-relaxed text-gray-700 space-y-4">
                         <p><strong>Usage:</strong> You are allowed to remove the cap and casing, but do so carefully.</p>
                         <p><strong>Liability:</strong> Any damage to the equipment results in a loss of your deposit.</p>
                         <p><strong>Returns:</strong> All items (camera, pouch, and bag) must be returned to receive a full deposit refund.</p>
                     </div>
                 </div>
 
-                <div class="p-8 space-y-4 bg-white md:bg-pink-50/10">
-                    <div class="flex items-start justify-between">
-                        <span class="text-gray-300 font-bold text-lg">04.</span>
-                        <div class="text-blue-500"><i data-lucide="smartphone" size="32"></i></div>
+                <div class="p-10 space-y-4 bg-white relative z-10">
+                    <div class="flex items-center justify-between">
+                        <span class="text-pink-200 font-black text-4xl italic">04.</span>
+                        <div class="bg-blue-100 p-3 rounded-2xl border-2 border-black shadow-[4px_4px_0px_black]"><i data-lucide="smartphone" class="text-blue-600"></i></div>
                     </div>
-                    <h3 class="font-black uppercase italic text-xl">Photo Transfers</h3>
-                    <div class="text-sm font-medium leading-relaxed text-gray-700 space-y-3">
+                    <h3 class="font-black uppercase italic text-2xl">Photo Transfers</h3>
+                    <div class="text-[14px] font-medium leading-relaxed text-gray-700 space-y-4">
                         <p><strong>DIY Policy:</strong> Transferring photos is your responsibility. The service does not provide free photo transfers.</p>
                         <p><strong>Paid Service:</strong> If you want the staff to handle the transfer for you, a service fee of RM100 applies.</p>
+                        <p><strong>Alternative Apps:</strong> If your SD card reader fails, they recommend using the following apps:</p>
                         
-                        <div class="grid grid-cols-2 gap-x-2 gap-y-3 pt-3">
-                            <a href="https://my.canon/en/consumer/camera-connect/main/product" target="_blank" class="brand-link"><i data-lucide="camera" size="14"></i> Canon Connect</a>
-                            <a href="https://www.dji.com/global/downloads/djiapp/dji-mimo" target="_blank" class="brand-link"><i data-lucide="video" size="14"></i> DJI Mimo</a>
-                            <a href="https://leica-camera.com/en-int/leica-fotos-app" target="_blank" class="brand-link"><i data-lucide="aperture" size="14"></i> Leica FOTOS</a>
-                            <a href="https://www.fujifilm-x.com/en-my/products/software/xapp/" target="_blank" class="brand-link"><i data-lucide="focus" size="14"></i> Fujifilm XApp</a>
+                        <div class="grid grid-cols-1 gap-2 mt-2">
+                            <a href="https://my.canon/en/consumer/camera-connect/main/product" target="_blank" class="brand-link"><i data-lucide="link" size="14"></i> Canon Camera Connect</a>
+                            <a href="https://www.dji.com/global/downloads/djiapp/dji-mimo" target="_blank" class="brand-link"><i data-lucide="link" size="14"></i> DJI Mimo</a>
+                            <a href="https://leica-camera.com/en-int/leica-fotos-app" target="_blank" class="brand-link"><i data-lucide="link" size="14"></i> Leica FOTOS</a>
+                            <a href="https://www.fujifilm-x.com/en-my/products/software/xapp/" target="_blank" class="brand-link"><i data-lucide="link" size="14"></i> FUJIFILM XApp</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="bento-container p-6 bg-pink-400 text-center">
-            <h4 class="font-black uppercase italic mb-1 text-black text-xl">Important Deposit Information</h4>
+        <div class="bento-container p-8 bg-pink-400 text-center border-dashed">
+            <h4 class="font-black uppercase italic mb-2 text-black text-2xl">Important Deposit Information</h4>
             <p class="font-bold text-sm text-black">Refund Timeline: Deposits are processed and returned within 3 working days after the camera is returned.</p>
         </div>
 
-        <div class="bento-container p-6 md:p-10">
-            <div class="flex items-center gap-3 mb-8">
-                <div class="w-4 h-4 rounded-full bg-pink-400 border-2 border-black animate-ping"></div>
-                <h2 class="text-3xl font-black italic uppercase">Book Request ✨</h2>
+        <div class="bento-container p-8 md:p-12">
+            <div class="flex items-center gap-4 mb-10">
+                <div class="w-5 h-5 rounded-full bg-pink-400 border-2 border-black animate-ping"></div>
+                <h2 class="text-4xl font-black italic uppercase">Book Request ✨</h2>
             </div>
-            <form id="bookingForm" class="space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label><i data-lucide="user" size="14"></i> Your Name</label>
-                        <input type="text" name="name" placeholder="Sweet Pea" class="input-field" required>
-                    </div>
-                    <div>
-                        <label><i data-lucide="camera" size="14"></i> Select Camera</label>
-                        <select name="camera" class="input-field">
-                            <option>Leica D-Lux 8</option>
-                            <option>Leica D-Lux 7</option>
-                            <option>Canon G7X Mark III</option>
-                            <option>Canon G7X Mark II</option>
-                            <option>DJI OSMO Pocket 3</option>
-                            <option>Insta360 X3</option>
-                            <option>Fujifilm X-M5</option>
-                            <option>Canon EOS R50</option>
-                        </select>
-                    </div>
+            <form id="bookingForm" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <label>Your Name</label>
+                    <input type="text" name="name" placeholder="Name" class="input-field" required>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label><i data-lucide="phone" size="14"></i> WhatsApp Number</label>
-                        <input type="tel" name="whatsapp" placeholder="60123456789" class="input-field" required>
-                    </div>
-                    <div>
-                        <label><i data-lucide="mail" size="14"></i> Email Address</label>
-                        <input type="email" name="email" placeholder="hello@sweet.com" class="input-field" required>
-                    </div>
+                <div>
+                    <label>Select Camera</label>
+                    <select name="camera" class="input-field">
+                        <option>Leica D-Lux 8</option>
+                        <option>Leica D-Lux 7</option>
+                        <option>Canon G7X Mark III</option>
+                        <option>Canon G7X Mark II</option>
+                        <option>DJI OSMO Pocket 3</option>
+                        <option>Insta360 X3</option>
+                        <option>Fujifilm X-M5</option>
+                        <option>Canon EOS R50</option>
+                    </select>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label><i data-lucide="calendar" size="14"></i> Start Date</label>
-                        <input type="date" id="startDate" name="startDate" class="input-field" required>
-                    </div>
-                    <div>
-                        <label><i data-lucide="calendar-check" size="14"></i> Return Date</label>
-                        <input type="date" id="returnDate" name="returnDate" class="input-field" required>
-                    </div>
+                <div>
+                    <label>WhatsApp Number</label>
+                    <input type="tel" name="whatsapp" placeholder="60..." class="input-field" required>
                 </div>
-                <button type="submit" id="submitBtn" class="w-full bg-[#ff8eb2] border-4 border-black p-5 rounded-[2rem] font-black text-2xl shadow-[6px_6px_0px_#000] active:translate-y-1 active:shadow-none transition-all">
-                    CONFIRM REQUEST 💖
-                </button>
+                <div>
+                    <label>Email Address</label>
+                    <input type="email" name="email" placeholder="email@example.com" class="input-field" required>
+                </div>
+                <div>
+                    <label>Start Date</label>
+                    <input type="date" id="startDate" name="startDate" class="input-field" required>
+                </div>
+                <div>
+                    <label>Return Date</label>
+                    <input type="date" id="returnDate" name="returnDate" class="input-field" required>
+                </div>
+                <div class="md:col-span-2">
+                    <button type="submit" id="submitBtn" class="w-full bg-[#ff8eb2] border-4 border-black p-6 rounded-[2.5rem] font-black text-2xl shadow-[8px_8px_0px_#000] active:translate-y-1 active:shadow-none transition-all">
+                        CONFIRM REQUEST 💖
+                    </button>
+                </div>
             </form>
         </div>
     </div>
@@ -222,27 +205,6 @@
         startInput.addEventListener('change', () => {
             returnInput.setAttribute('min', startInput.value);
             if (returnInput.value < startInput.value) returnInput.value = startInput.value;
-        });
-
-        const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
-        const form = document.getElementById('bookingForm');
-
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            btn.disabled = true; btn.innerText = "SENDING... ✨";
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(() => { 
-                    document.getElementById('popup-overlay').style.display = 'flex'; 
-                    form.reset(); 
-                    btn.disabled = false; 
-                    btn.innerText = "CONFIRM REQUEST 💖"; 
-                })
-                .catch(() => { 
-                    alert("Submission failed!"); 
-                    btn.disabled = false; 
-                    btn.innerText = "CONFIRM REQUEST 💖"; 
-                });
         });
     </script>
 </body>
