@@ -44,7 +44,6 @@
             font-weight: bold !important;
             width: 100%;
             outline: none;
-            background-color: white;
         }
         
         label { 
@@ -53,8 +52,8 @@
             text-transform: uppercase; font-style: italic; color: #f472b6;
         }
 
-        .app-badge {
-            @apply flex items-center gap-2 bg-gray-100 px-3 py-1.5 border-2 border-black rounded-xl text-[10px] font-black uppercase;
+        .app-link {
+            @apply flex items-center justify-between bg-gray-50 border-2 border-black p-3 rounded-xl hover:bg-pink-50 transition-colors mb-2;
         }
 
         #popup-overlay {
@@ -63,10 +62,8 @@
             inset: 0;
             background: rgba(255, 182, 193, 0.4);
             backdrop-filter: blur(8px);
-            z-index: 50;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            z-index: 100;
+            align-items: center; justify-content: center; padding: 20px;
         }
     </style>
 </head>
@@ -74,14 +71,10 @@
 
     <div id="popup-overlay">
         <div class="bento-container max-w-md w-full p-8 text-center space-y-4">
-            <div class="flex justify-center text-pink-500">
-                <i data-lucide="party-popper" size="64"></i>
-            </div>
+            <div class="flex justify-center text-pink-500"><i data-lucide="party-popper" size="64"></i></div>
             <h3 class="text-2xl font-black italic uppercase text-pink-500">Details Received!</h3>
-            <p class="font-bold text-gray-700">Yay! We've got your request. Our team will reach out via WhatsApp soon to confirm! ✨</p>
-            <button onclick="closePopup()" class="w-full bg-black text-white p-4 rounded-2xl font-black uppercase shadow-[4px_4px_0px_0px_#ff8eb2] hover:scale-105 transition-transform">
-                Okay, Got it!
-            </button>
+            <p class="font-bold text-gray-700">Our team will reach out via WhatsApp soon to confirm! ✨</p>
+            <button onclick="closePopup()" class="w-full bg-black text-white p-4 rounded-2xl font-black uppercase shadow-[4px_4px_0px_0px_#ff8eb2]">Okay!</button>
         </div>
     </div>
 
@@ -93,82 +86,87 @@
         </div>
 
         <div class="bento-container h-48 md:h-64 mb-8">
-            <img src="http://googleusercontent.com/image_collection/image_retrieval/16725915900155124386_0" 
-                 class="w-full h-full object-cover" alt="Aesthetic Camera Setup">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-6">
-                <span class="text-white font-black italic uppercase tracking-widest text-lg">Premium Gear for Your Memories</span>
-            </div>
+            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             
-            <div class="bento-container p-6 bg-white">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="bg-pink-400 p-2 border-2 border-black rounded-lg">
-                        <i data-lucide="camera" size="20"></i>
-                    </div>
-                    <h3 class="font-black uppercase italic text-lg">01. Test First!</h3>
+            <div class="bento-container p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="bg-pink-400 p-2 border-2 border-black rounded-lg"><i data-lucide="camera"></i></div>
+                    <h3 class="font-black uppercase italic text-xl">01. Test First!</h3>
                 </div>
-                <ul class="text-sm font-medium space-y-2 text-gray-800">
-                    <li class="flex gap-2"><span>•</span> Snap 1–2 test photos immediately.</li>
-                    <li class="flex gap-2"><span>•</span> Verify gallery & phone transfer.</li>
-                    <li class="flex gap-2 text-rose-500 font-bold"><span>•</span> Report issues/cracks instantly!</li>
-                </ul>
+                <div class="text-sm space-y-3 font-medium text-gray-800">
+                    <p><strong>Immediate Action:</strong> Upon receiving the camera, snap 1–2 test photos.</p>
+                    <p><strong>Verification:</strong> View them in the gallery and transfer them to your phone to ensure the camera is working correctly.</p>
+                    <p><strong>Reporting:</strong> If you notice any issues (cracks, defects, or "patches"), inform us immediately.</p>
+                    <p class="text-rose-500 font-bold border-t-2 border-dashed border-pink-100 pt-2">Note: Failure to report issues early may result in being charged for damage.</p>
+                </div>
             </div>
 
-            <div class="bento-container p-6 bg-pink-50/30">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="bg-yellow-400 p-2 border-2 border-black rounded-lg">
-                        <i data-lucide="zap-off" size="20"></i>
-                    </div>
-                    <h3 class="font-black uppercase italic text-lg">02. Transfer Risks</h3>
+            <div class="bento-container p-6 bg-pink-50/20">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="bg-yellow-400 p-2 border-2 border-black rounded-lg"><i data-lucide="monitor-off"></i></div>
+                    <h3 class="font-black uppercase italic text-xl">02. Transfer Risks</h3>
                 </div>
-                <p class="text-sm font-medium text-gray-800">
-                    Avoid iPads or Laptops! They can <strong>corrupt the SD card</strong>. Please notify staff first if you must use them.
-                </p>
+                <div class="text-sm space-y-3 font-medium text-gray-800">
+                    <p><strong>Risk:</strong> Using a laptop or iPad to transfer photos may <strong>corrupt or crash</strong> the SD card.</p>
+                    <p><strong>Protocol:</strong> If you absolutely must use these devices, you must notify the staff first.</p>
+                </div>
             </div>
 
             <div class="bento-container p-6">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="bg-green-400 p-2 border-2 border-black rounded-lg">
-                        <i data-lucide="heart-handshake" size="20"></i>
-                    </div>
-                    <h3 class="font-black uppercase italic text-lg">03. Handle with Care</h3>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="bg-green-400 p-2 border-2 border-black rounded-lg"><i data-lucide="heart-handshake"></i></div>
+                    <h3 class="font-black uppercase italic text-xl">03. Handle With Care</h3>
                 </div>
-                <p class="text-sm font-medium text-gray-800">
-                    Casing removal is allowed. However, any damage results in <strong>deposit loss</strong>. Return all items (pouch/bag).
-                </p>
+                <div class="text-sm space-y-3 font-medium text-gray-800">
+                    <p><strong>Usage:</strong> You are allowed to remove the cap and casing, but do so carefully.</p>
+                    <p><strong>Liability:</strong> Any damage to the equipment results in a <strong>loss of your deposit</strong>.</p>
+                    <p><strong>Returns:</strong> All items (camera, pouch, bag) must be returned for a full refund.</p>
+                </div>
             </div>
 
-            <div class="bento-container p-6 bg-pink-50/30">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="bg-blue-400 p-2 border-2 border-black rounded-lg">
-                        <i data-lucide="smartphone-transfer" size="20"></i>
-                    </div>
-                    <h3 class="font-black uppercase italic text-lg">04. App Support</h3>
+            <div class="bento-container p-6 bg-blue-50/10">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="bg-blue-400 p-2 border-2 border-black rounded-lg"><i data-lucide="smartphone"></i></div>
+                    <h3 class="font-black uppercase italic text-xl">04. Photo Transfers</h3>
                 </div>
-                <div class="flex flex-wrap gap-2 mt-2">
-                    <div class="app-badge"><i data-lucide="download" size="12"></i> Canon</div>
-                    <div class="app-badge"><i data-lucide="download" size="12"></i> DJI</div>
-                    <div class="app-badge"><i data-lucide="download" size="12"></i> Leica</div>
-                    <div class="app-badge"><i data-lucide="download" size="12"></i> Fujifilm</div>
+                <div class="text-sm mb-4">
+                    <p class="font-bold">DIY Policy: Transfers are your responsibility.</p>
+                    <p class="text-[10px] text-gray-500">Staff handling fee: RM100.</p>
                 </div>
-                <p class="text-[10px] mt-3 font-bold text-gray-500 italic">RM100 fee applies for staff transfer service.</p>
+                
+                <div class="space-y-2">
+                    <a href="https://asia.canon/en/consumer/canon-camera-connect/lineup" target="_blank" class="app-link">
+                        <span class="font-black text-xs uppercase">Canon Connect</span>
+                        <i data-lucide="external-link" size="14"></i>
+                    </a>
+                    <a href="https://www.dji.com/mimo" target="_blank" class="app-link">
+                        <span class="font-black text-xs uppercase">DJI Mimo</span>
+                        <i data-lucide="external-link" size="14"></i>
+                    </a>
+                    <a href="https://leica-camera.com/en-int/leica-fotos-app" target="_blank" class="app-link">
+                        <span class="font-black text-xs uppercase">Leica FOTOS</span>
+                        <i data-lucide="external-link" size="14"></i>
+                    </a>
+                    <a href="https://fujifilm-x.com/en-us/products/software/x-app/" target="_blank" class="app-link">
+                        <span class="font-black text-xs uppercase">FUJIFILM XApp</span>
+                        <i data-lucide="external-link" size="14"></i>
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div class="bento-container p-4 bg-pink-400 flex items-center justify-center gap-4 mb-8">
-            <i data-lucide="info" class="text-black"></i>
-            <div>
-                <h4 class="font-black uppercase italic text-xs">Refund Policy</h4>
-                <p class="font-bold text-[10px]">Deposits are returned within 3 working days post-return.</p>
-            </div>
+        <div class="bento-container p-6 bg-pink-400 text-center">
+            <h4 class="font-black uppercase italic mb-1"><i data-lucide="info" class="inline mr-2"></i> Important Deposit Info</h4>
+            <p class="font-bold text-sm">Deposits are returned within 3 working days after the camera is returned.</p>
         </div>
 
         <div class="bento-container p-6 md:p-10">
             <div class="flex items-center gap-3 mb-8">
-                <div class="w-4 h-4 rounded-full bg-pink-400 border-2 border-black animate-pulse"></div>
-                <h2 class="text-3xl font-black italic uppercase tracking-tight">Book Request ✨</h2>
+                <div class="w-4 h-4 rounded-full bg-pink-400 border-2 border-black animate-ping"></div>
+                <h2 class="text-3xl font-black italic uppercase">Book Request ✨</h2>
             </div>
 
             <form id="bookingForm" class="space-y-6">
@@ -198,34 +196,31 @@
                         <input type="tel" name="whatsapp" placeholder="60123456789" class="input-field" required>
                     </div>
                     <div>
-                        <label><i data-lucide="mail" size="14"></i> Email</label>
-                        <input type="email" name="email" placeholder="hello@sweet.com" class="input-field" required>
+                        <label><i data-lucide="calendar" size="14"></i> Start Date</label>
+                        <input type="date" id="startDate" name="startDate" class="input-field" required>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label><i data-lucide="calendar" size="14"></i> Start Date</label>
-                        <input type="date" id="startDate" name="startDate" class="input-field" required>
-                    </div>
-                    <div>
                         <label><i data-lucide="calendar-check" size="14"></i> Return Date</label>
                         <input type="date" id="returnDate" name="returnDate" class="input-field" required>
                     </div>
+                    <div>
+                         <label><i data-lucide="mail" size="14"></i> Email</label>
+                         <input type="email" name="email" placeholder="hello@sweet.com" class="input-field" required>
+                    </div>
                 </div>
 
-                <button type="submit" id="submitBtn" class="w-full bg-[#ff8eb2] border-4 border-black p-5 rounded-[2rem] font-black text-2xl shadow-[6px_6px_0px_#000] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-3">
-                    CONFIRM REQUEST <i data-lucide="heart" fill="currentColor"></i>
+                <button type="submit" id="submitBtn" class="w-full bg-[#ff8eb2] border-4 border-black p-5 rounded-[2rem] font-black text-2xl shadow-[6px_6px_0px_#000] active:translate-y-1 active:shadow-none transition-all">
+                    CONFIRM REQUEST 💖
                 </button>
             </form>
         </div>
     </div>
 
     <script>
-        // Initialize Icons
         lucide.createIcons();
-
-        // Calendar Logic
         const startInput = document.getElementById('startDate');
         const returnInput = document.getElementById('returnDate');
         const today = new Date().toISOString().split('T')[0];
@@ -235,7 +230,6 @@
             if (returnInput.value < startInput.value) returnInput.value = startInput.value;
         });
 
-        // Form Logic
         const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
         const form = document.getElementById('bookingForm');
         const overlay = document.getElementById('popup-overlay');
@@ -243,23 +237,17 @@
         form.addEventListener('submit', e => {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
-            btn.disabled = true;
-            btn.innerHTML = `SENDING... <i data-lucide="loader-2" class="animate-spin"></i>`;
-            lucide.createIcons();
+            btn.disabled = true; btn.innerText = "SENDING... ✨";
             
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                 .then(() => {
                     overlay.style.display = 'flex';
                     form.reset();
-                    btn.disabled = false;
-                    btn.innerHTML = `CONFIRM REQUEST <i data-lucide="heart" fill="currentColor"></i>`;
-                    lucide.createIcons();
+                    btn.disabled = false; btn.innerText = "CONFIRM REQUEST 💖";
                 })
                 .catch(() => {
                     alert("Submission failed!");
-                    btn.disabled = false;
-                    btn.innerHTML = `CONFIRM REQUEST <i data-lucide="heart" fill="currentColor"></i>`;
-                    lucide.createIcons();
+                    btn.disabled = false; btn.innerText = "CONFIRM REQUEST 💖";
                 });
         });
 
